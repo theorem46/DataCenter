@@ -1,0 +1,128 @@
+E4  THE LEAKAGE CROSSOVER
+baseline silicon at Tj 85 degC: dynamic share 0.85 (leakage share 0.15)
+compute per grid joule: hyperscale 0.7798, industry average 0.6071
+
+E4.1  Silicon (Tj limit 100 degC, Rth 0.050 K/W) across coolant temperature
+ coolant    chip W       Tj   dyn sh       best cycle  recover  grid/J IT  compute/J   vs hyper
+    35 C       700   70.0 C    0.936       tower only    0.34%     1.0866     0.8617      10.5%
+    40 C       700   75.0 C    0.915       tower only    0.34%     1.0866     0.8417       7.9%
+    45 C       700   80.0 C    0.886       tower only    0.34%     1.0866     0.8157       4.6%
+    50 C       700   85.0 C    0.850       tower only    0.34%     1.0866     0.7822       0.3%
+    55 C       700   90.0 C    0.803      ORC Toluene    1.28%     1.0772     0.7458      -4.4%
+    60 C       700   95.0 C    0.744      ORC Toluene    2.17%     1.0683     0.6965     -10.7%
+    65 C       700  100.0 C    0.669      ORC Toluene    3.02%     1.0598     0.6314     -19.0%
+    70 C       600  100.0 C    0.614      ORC Toluene    3.85%     1.0515     0.5840     -25.1%
+    75 C       500  100.0 C    0.537      ORC Toluene    4.64%     1.0436     0.5144     -34.0%
+    80 C       400  100.0 C    0.421      ORC Toluene    5.41%     1.0359     0.4065     -47.9%
+    85 C       300  100.0 C    0.228      ORC Toluene    6.14%     1.0286     0.2218     -71.6%
+  rows with Tj below 85 degC gain from a cooler junction, which the baseline
+  facility could equally adopt; they are not a recovery gain
+
+E4.2  Robustness over every corner of the swept ranges
+  hot silicon: best gain over hyperscale with Tj above the baseline junction
+  SiC: gain over hyperscale at the design point, logic as efficient as silicon
+  leak_frac        (0.05, 0.5)        [DESIGN]
+  rth              (0.0111, 0.05)     [DESIGN]
+  t_base_junction  (65.0, 85.0)       [DESIGN]
+  tj_max_si        (100.0, 110.0)     [BENCH]
+      leak      Rth    Tbase   Tj,max   hot silicon vs hyper   SiC vs hyper
+     0.050   0.0111     65.0    100.0                 +1.05%          35.0%
+     0.050   0.0111     65.0    110.0                 +1.05%          35.0%
+     0.050   0.0111     85.0    100.0                 +4.32%          35.0%
+     0.050   0.0111     85.0    110.0                 +4.32%          35.0%
+     0.050   0.0500     65.0    100.0                 -1.55%          35.0%
+     0.050   0.0500     65.0    110.0                 -1.55%          35.0%
+     0.050   0.0500     85.0    100.0                 -0.47%          35.0%
+     0.050   0.0500     85.0    110.0                 -0.47%          35.0%
+     0.500   0.0111     65.0    100.0                -16.68%         156.4%
+     0.500   0.0111     65.0    110.0                -16.68%         156.4%
+     0.500   0.0111     85.0    100.0                -11.91%         156.4%
+     0.500   0.0111     85.0    110.0                -11.91%         156.4%
+     0.500   0.0500     65.0    100.0 cannot run hot (runaway)         156.4%
+     0.500   0.0500     65.0    110.0 cannot run hot (runaway)         156.4%
+     0.500   0.0500     85.0    100.0                -17.81%         156.4%
+     0.500   0.0500     85.0    110.0                -17.81%         156.4%
+  the silicon result (no gain from running hot) holds at 12 of 16 corners; where it
+  fails (lowest leakage with the best demonstrated thermal resistance) the gain is
+  at most 4.3%
+
+E4.3  SiC: break-even compute efficiency against hyperscale
+  epsilon* = silicon-relative FLOP per dynamic joule a hot chip needs to match
+  the best hyperscale facility in computation delivered per grid joule
+   coolant  chip W       Tj     best cycle  credited  recover  grid/J IT  eps* hyper eps* average
+   100.0 C     700  135.0 C    ORC Toluene     7.91%    8.22%     1.0078       0.786        0.612
+   150.0 C     700  185.0 C    ORC Toluene    13.66%   13.94%     0.9506       0.741        0.577
+   200.0 C     700  235.0 C    ORC Toluene    18.01%   18.29%     0.9071       0.707        0.551
+   250.0 C     700  285.0 C    ORC Toluene    21.19%   21.46%     0.8754       0.683        0.532
+   300.0 C     700  335.0 C           sCO2    23.73%   23.99%     0.8501       0.663        0.516
+   350.0 C     700  385.0 C           sCO2    27.64%   27.88%     0.8112       0.633        0.493
+   400.0 C     700  435.0 C           sCO2    31.00%   31.23%     0.7777       0.607        0.472
+   450.0 C     700  485.0 C           sCO2    33.96%   34.18%     0.7482       0.584        0.454
+   465.0 C     700  500.0 C           sCO2    34.79%   35.00%     0.7400       0.578        0.450
+
+  epsilon* over the leakage-share sweep (low end least favourable to SiC)
+  leak share 0.05: eps* 0.741 at 300 degC, 0.645 at 465.0 degC
+  leak share 0.15: eps* 0.663 at 300 degC, 0.578 at 465.0 degC
+  leak share 0.50: eps* 0.390 at 300 degC, 0.340 at 465.0 degC
+
+E4.4  Per joule of electricity into the compute tier
+case                                computation      leakage    recovered     rejected
+baseline silicon (85 C Tj)               0.8500       0.1500       0.0000       1.0000
+silicon, 65 C coolant                    0.6692       0.3308       0.0302       0.9698
+SiC, 300 C coolant                       1.0000       0.0000       0.2399       0.7601
+SiC, 465.0 C coolant                     0.9991       0.0009       0.3500       0.6500
+
+E4.5  Fault injection (each fault run through the code paths above)
+  leakage switched off (dyn share constant)                    caught
+  ORC expander efficiency 1.6 in the recovery model            caught
+  hot silicon credited with the baseline dynamic share         caught
+  recovered electricity exceeding the heat input               caught
+
+==============================================================================
+VERDICTS  APPENDIX E4
+==============================================================================
+[PASS] E4.1 silicon dynamic share falls as coolant warms (leakage rises)  (0.936 -> 0.228)
+[PASS] E4.1 recovered electricity rises with coolant temperature  (0.0034 -> 0.0614)
+[PASS] E4.1 silicon run hotter than the baseline junction never beats hyperscale (leakage outruns recovery)  (best hot-silicon case -4.4% vs hyperscale)
+[PASS] E4.1 silicon 35 degC: junction within limit  (70.0 degC)
+[PASS] E4.1 silicon 35 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 40 degC: junction within limit  (75.0 degC)
+[PASS] E4.1 silicon 40 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 45 degC: junction within limit  (80.0 degC)
+[PASS] E4.1 silicon 45 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 50 degC: junction within limit  (85.0 degC)
+[PASS] E4.1 silicon 50 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 55 degC: junction within limit  (90.0 degC)
+[PASS] E4.1 silicon 55 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 60 degC: junction within limit  (95.0 degC)
+[PASS] E4.1 silicon 60 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 65 degC: junction within limit  (100.0 degC)
+[PASS] E4.1 silicon 65 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 70 degC: junction within limit  (100.0 degC)
+[PASS] E4.1 silicon 70 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 75 degC: junction within limit  (100.0 degC)
+[PASS] E4.1 silicon 75 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 80 degC: junction within limit  (100.0 degC)
+[PASS] E4.1 silicon 80 degC: recovery below Carnot to ambient
+[PASS] E4.1 silicon 85 degC: junction within limit  (100.0 degC)
+[PASS] E4.1 silicon 85 degC: recovery below Carnot to ambient
+[PASS] E4.1 hottest coolant carrying full design power agrees with the registry value Tj,max - Rth P (to the scan step)  (scan 65 degC, registry 65.0 degC)
+[PASS] E4.2 at every corner, the best hot-silicon case gains less than SiC at its design point  (16 of 16 corners)
+[PASS] E4.2 uniform dominance: the best hot-silicon gain at any corner is below the smallest SiC gain at any corner  (4.32% < 34.97%)
+[PASS] E4.3 SiC leakage negligible at every coolant temperature (dyn share > 0.999)  (min 0.999144)
+[PASS] E4.3 SiC carries full design power within its junction limit at every point
+[PASS] E4.3 required efficiency never rises with temperature within a cycle family (to within SiC's own leakage where the ORC practice ceiling binds)  (ORC 0.786 -> 0.683; sCO2 0.663 -> 0.578)
+[PASS] E4.3 at the SiC design point the chip need not match silicon's efficiency  (eps* 0.663)
+[PASS] E4.3 at the derived SiC coolant limit the required efficiency is lowest  (eps* 0.578)
+[PASS] E4.3 even at the least favourable leakage share, SiC need not match silicon  (eps* 0.741 / 0.645)
+[PASS] E4.3 eps* scales with the baseline dynamic share (1 - leak), to within SiC's own leakage  (0.526317 vs 0.526316)
+[PASS] E4.4 baseline silicon (85 C Tj): ledger closes (computation + leakage = 1 = recovered + rejected)
+[PASS] E4.4 silicon, 65 C coolant: ledger closes (computation + leakage = 1 = recovered + rejected)
+[PASS] E4.4 SiC, 300 C coolant: ledger closes (computation + leakage = 1 = recovered + rejected)
+[PASS] E4.4 SiC, 465.0 C coolant: ledger closes (computation + leakage = 1 = recovered + rejected)
+[PASS] E4.5 fault caught: leakage switched off (dyn share constant)
+[PASS] E4.5 fault caught: ORC expander efficiency 1.6 in the recovery model
+[PASS] E4.5 fault caught: hot silicon credited with the baseline dynamic share
+[PASS] E4.5 fault caught: recovered electricity exceeding the heat input
+------------------------------------------------------------------------------
+APPENDIX E4: 43/43 checks pass

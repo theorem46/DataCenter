@@ -1,0 +1,110 @@
+E1.1  The covariant operator on curved surfaces
+Laplace-Beltrami on the unit sphere; exact spectrum l(l+1), multiplicity 2l+1
+  level 2:   162 vertices; modes l=0..4 mean: -0.0000, 1.9999, 5.8645, 11.3317, 18.0247
+  level 3:   642 vertices; modes l=0..4 mean: 0.0000, 2.0000, 5.9659, 11.8299, 19.4916
+  level 4:  2562 vertices; modes l=0..4 mean: -0.0000, 2.0000, 5.9915, 11.9573, 19.8720
+
+E1.2  Roofline: arithmetic intensity and the power the chip draws
+  reference accelerator H100 SXM: FP64 tensor 67 TFLOP/s, 3.35 TB/s, ridge 20.0 FLOP/byte
+  kernel                                               FLOP  FLOP/byte bound on H100 local GF/s
+  operator application (sparse)                   3.584e+04       0.13       memory       2.91
+  spectral transform of 1000 fields (dense)       5.124e+09     104.59      compute      82.49
+  heat kernel from 1000 modes (dense)             1.313e+10     140.40      compute      85.22
+  full spectrum, 2562 vertices (dense)            1.513e+11      45.04      compute      50.87
+  local rates are machine-dependent and shown for information; no check uses them
+  the dense kernels are compute-bound; the facility runs its chips at rated power,
+  and by the First Law that power is the heat output
+
+E1.3  How much heat a chip carries before it fails (R_th = 0.050 K/W; best demonstrated 0.0111 K/W)
+  silicon carbide at 500 degC has the intrinsic carrier density of silicon at 9.9 degC
+  material      coolant      limit   max heat W   x H100 TDP leak share    W/cm2 die
+  Si               40 C      100 C         1200         1.71      19.3%          147
+  Si               65 C      100 C          700         1.00      33.1%           86
+  Si               80 C      100 C          400         0.57      57.9%           49
+  SiC (4H)         40 C      500 C         9200        13.14       0.0%         1130
+  SiC (4H)         65 C      500 C         8700        12.43       0.0%         1069
+  SiC (4H)         80 C      500 C         8400        12.00       0.0%         1032
+  SiC (4H)        120 C      500 C         7600        10.86       0.0%          934
+  SiC (4H)        300 C      500 C         4000         5.71       0.0%          491
+  SiC (4H)        465 C      500 C          700         1.00       0.1%           86
+
+E1.4  How much heat the public geometric dataset can produce
+  ABC CAD dataset                               1,000,000 geometries
+  ShapeNetCore                                     51,300 geometries
+  Thingi10K                                        10,000 geometries
+  Protein Data Bank (molecular surfaces)          200,000 geometries
+  total                                         1,261,300
+  energy efficiency 6.34e+10 FLOP/J (H100 FP64 tensor, 66.3% sustained = TOP500 Rmax/Rpeak)
+  a 100 MW furnace consumes, and releases as heat, 3.154e+15 J/yr = 2.00e+26 FLOP/yr
+  depth of computation                                  FLOP/geom    MWh total  furnace-years   heat GW-yr
+  T1 partial spectrum   n=1e+05, k=1e+03                8.028e+11    4.434e-03      5.062e-09    5.062e-10
+  T2 deep partial       n=1e+06, k=5e+03                2.001e+14    1.105e+00      1.262e-06    1.262e-07
+  T3 full spectrum      n=1e+05                         9.000e+15    4.971e+01      5.675e-05    5.675e-06
+  T4 full spectrum      n=1e+06                         9.000e+18    4.971e+04      5.675e-02    5.675e-03
+  T5 T4 x 100 metric families                           9.000e+20    4.971e+06      5.675e+00    5.675e-01
+  T5 publishes the full eigenvalue spectra: 1.01 PB for the corpus
+
+E1.5  Fault injection
+  ellipsoid presented as a sphere (multiplicity check breaks)    caught
+  heat kernel without mass weighting (heat not conserved)        caught
+  negative thermal resistance (junction below coolant)           caught
+  bandgap sign reversed (leakage falls with heat)                caught
+  full spectrum costed at n^2 instead of n^3 (tier order breaks) caught
+
+==============================================================================
+VERDICTS  APPENDIX E1
+==============================================================================
+[PASS] E1.1 operator symmetric (self-adjoint)  (0.0e+00)
+[PASS] E1.1 operator positive semidefinite  (min -9.03e-14)
+[PASS] E1.1 kernel is the constants (lambda_0 = 0)  (-9.03e-14)
+[PASS] E1.1 operator annihilates constants
+[PASS] E1.1 multiplicity 2l+1 = 3 recovered for l = 1  (spread 0.0000, gap 1.996)
+[PASS] E1.1 multiplicity 2l+1 = 5 recovered for l = 2  (spread 0.0000, gap 0.994)
+[PASS] E1.1 multiplicity 2l+1 = 7 recovered for l = 3  (spread 0.0002, gap 0.659)
+[PASS] E1.1 multiplicity 2l+1 = 9 recovered for l = 4  (spread 0.0005, gap 0.488)
+[PASS] E1.1 eigenvalue l = 1 converges under refinement  (0.0000 > 0.0000 > 0.0000)
+[PASS] E1.1 eigenvalue l = 2 converges under refinement  (0.0226 > 0.0057 > 0.0014)
+[PASS] E1.1 eigenvalue l = 3 converges under refinement  (0.0557 > 0.0142 > 0.0036)
+[PASS] E1.1 eigenvalue l = 4 converges under refinement  (0.0988 > 0.0254 > 0.0064)
+[PASS] E1.1 heat kernel conserves heat (integral = 1)  (3.0e-14)
+[PASS] E1.1 heat kernel symmetric and positive
+[PASS] E1.2 sparse operator application is memory-bound on the reference chip  (0.135 < 20.0)
+[PASS] E1.2 spectral transform of 1000 fields (dense) is compute-bound on the reference chip  (104.6 > 20.0)
+[PASS] E1.2 heat kernel from 1000 modes (dense) is compute-bound on the reference chip  (140.4 > 20.0)
+[PASS] E1.2 full spectrum, 2562 vertices (dense) is compute-bound on the reference chip  (45.0 > 20.0)
+[PASS] E1.3 SiC at its junction limit leaks like Si at room temperature or below  (9.9 degC)
+[PASS] E1.3 Si at 40 degC coolant: junction within limit  (Tj 100.00 <= 100.0)
+[PASS] E1.3 Si at 40 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 Si at 65 degC coolant: junction within limit  (Tj 100.00 <= 100.0)
+[PASS] E1.3 Si at 65 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 Si at 80 degC coolant: junction within limit  (Tj 100.00 <= 100.0)
+[PASS] E1.3 Si at 80 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 SiC (4H) at 40 degC coolant: junction within limit  (Tj 500.00 <= 500.0)
+[PASS] E1.3 SiC (4H) at 40 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 SiC (4H) at 65 degC coolant: junction within limit  (Tj 500.00 <= 500.0)
+[PASS] E1.3 SiC (4H) at 65 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 SiC (4H) at 80 degC coolant: junction within limit  (Tj 500.00 <= 500.0)
+[PASS] E1.3 SiC (4H) at 80 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 SiC (4H) at 120 degC coolant: junction within limit  (Tj 500.00 <= 500.0)
+[PASS] E1.3 SiC (4H) at 120 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 SiC (4H) at 300 degC coolant: junction within limit  (Tj 500.00 <= 500.0)
+[PASS] E1.3 SiC (4H) at 300 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 SiC (4H) at 465 degC coolant: junction within limit  (Tj 500.00 <= 500.0)
+[PASS] E1.3 SiC (4H) at 465 degC coolant: energy closes (heat = power drawn)
+[PASS] E1.3 silicon driven past its limit enters thermal runaway or exceeds Tj
+[PASS] E1.3 silicon at the post's 80 degC coolant cannot carry its full design power  (400 W)
+[PASS] E1.3 SiC at its design coolant carries more heat per chip than Si at the coolest scan point  (4000 vs 1200 W)
+[PASS] E1.3 SiC at its hottest coolant still carries the full design power  (700 W)
+[PASS] E1.3 silicon leakage share rises with coolant temperature  (0.193 < 0.579)
+[PASS] E1.4 corpus total equals the sum of its benchmarked parts  (1261300)
+[PASS] E1.4 heat budget grows monotonically with depth of computation
+[PASS] E1.4 full-spectrum families keep a 100 MW furnace saturated for over a year  (5.67 furnace-years)
+[PASS] E1.4 partial spectra alone cannot keep a 100 MW furnace saturated for a day  (1.85e-06 days)
+[PASS] E1.4 the published eigenvalue spectra of the T5 corpus fit in petabytes  (1.01 PB)
+[PASS] E1.5 fault caught: ellipsoid presented as a sphere (multiplicity check breaks)
+[PASS] E1.5 fault caught: heat kernel without mass weighting (heat not conserved)
+[PASS] E1.5 fault caught: negative thermal resistance (junction below coolant)
+[PASS] E1.5 fault caught: bandgap sign reversed (leakage falls with heat)
+[PASS] E1.5 fault caught: full spectrum costed at n^2 instead of n^3 (tier order breaks)
+------------------------------------------------------------------------------
+APPENDIX E1: 52/52 checks pass

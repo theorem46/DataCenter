@@ -1,0 +1,126 @@
+E2a  The master slice: 12 surfaces, 2562 vertices, full spectra, 200 stored modes
+  written 12 entries, 33.0 MB compressed, manifest with SHA-256 per entry
+
+E2b  One dataset, three downstream architectures
+  (1) reduced-order spectral model, 200 stored modes, heat diffusion to t = 0.05
+      relative error over 12 surfaces: max 2.73e-05
+      full solve (backward Euler, 50 steps): error 7.71e-03, 2.238e+07 FLOP per query
+      reduced-order query: error 1.48e-05, 2.050e+06 FLOP per query (10.9x fewer)
+  (2) learned spectral filter (degree-40 Chebyshev in the operator), sparse ops only
+      held-out surfaces xy_0.20, xz_0.20, z3_0.20: max error 1.24e-07, 1.844e+06 FLOP per query, no eigen-solve
+  (3) parameter-to-spectrum regressor: eigenvalues 1-10 from the shape amplitude
+      held-out amplitudes [0.12, 0.24]: max relative error 1.62e-04
+
+E2c  Ground-truth verification harness
+  candidate answers          continuum (sphere)      dataset-exact
+  correct                                  100%               100%   accepted
+  +0.5%                                     75%                 0%   accepted
+  +1%                                       75%                 0%   accepted
+  +5%                                       25%                 0%   accepted
+  +20%                                       0%                 0%   accepted
+  continuum detection threshold by resolution (l = 1..4):
+    l = 1: 2562 vertices 0.001%  ->  10242 vertices 0.000%
+    l = 2: 2562 vertices 1.280%  ->  10242 vertices 0.320%
+    l = 3: 2562 vertices 3.185%  ->  10242 vertices 0.800%
+    l = 4: 2562 vertices 9.447%  ->  10242 vertices 1.439%
+
+E2d  Amortisation
+  slice computation: 1.816e+12 FLOP = 28.6 J at reference efficiency
+    1 developers: computed once 28.6 J; each separately 28.6 J; saved 0%
+    5 developers: computed once 28.6 J; each separately 143.2 J; saved 80%
+   10 developers: computed once 28.6 J; each separately 286.3 J; saved 90%
+   50 developers: computed once 28.6 J; each separately 1431.7 J; saved 98%
+  break-even: 7444 downstream queries per surface repay its spectrum
+
+E2e  Covariant against flat descent on a geometric energy
+  condition number: flat 1148, covariant 9.3
+  iterations to 1e-06: flat 7084, covariant 64
+  downstream FLOP:   flat 3.084e+08, covariant 1.345e+08 (2.3x fewer)
+
+E2f  Fault injection
+  one byte altered in a dataset entry                     caught
+  eigen-data stored under the wrong surface               caught
+  reduced-order model truncated to 5 modes                caught
+  verifier tolerance loosened to 10%                      caught
+  flat descent with step 2.2/lambda_max                   caught
+
+==============================================================================
+VERDICTS  APPENDIX E2
+==============================================================================
+[PASS] E2a quad_0.00: eigen-residual and M-orthonormality  (res 2.8e-16, orth 1.3e-14)
+[PASS] E2a quad_0.00: constant mode at lambda = 0  (-4.9e-14)
+[PASS] E2a quad_0.00: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.04: eigen-residual and M-orthonormality  (res 1.4e-16, orth 6.8e-14)
+[PASS] E2a quad_0.04: constant mode at lambda = 0  (2.3e-13)
+[PASS] E2a quad_0.04: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.08: eigen-residual and M-orthonormality  (res 1.3e-16, orth 5.1e-14)
+[PASS] E2a quad_0.08: constant mode at lambda = 0  (-6.7e-14)
+[PASS] E2a quad_0.08: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.12: eigen-residual and M-orthonormality  (res 1.2e-16, orth 5.3e-14)
+[PASS] E2a quad_0.12: constant mode at lambda = 0  (6.1e-14)
+[PASS] E2a quad_0.12: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.16: eigen-residual and M-orthonormality  (res 1.5e-16, orth 5.5e-14)
+[PASS] E2a quad_0.16: constant mode at lambda = 0  (4.0e-14)
+[PASS] E2a quad_0.16: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.20: eigen-residual and M-orthonormality  (res 1.4e-16, orth 9.1e-14)
+[PASS] E2a quad_0.20: constant mode at lambda = 0  (-3.7e-14)
+[PASS] E2a quad_0.20: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.24: eigen-residual and M-orthonormality  (res 1.4e-16, orth 2.8e-14)
+[PASS] E2a quad_0.24: constant mode at lambda = 0  (4.4e-14)
+[PASS] E2a quad_0.24: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.28: eigen-residual and M-orthonormality  (res 1.7e-16, orth 6.6e-14)
+[PASS] E2a quad_0.28: constant mode at lambda = 0  (6.8e-14)
+[PASS] E2a quad_0.28: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.32: eigen-residual and M-orthonormality  (res 2.1e-16, orth 6.7e-14)
+[PASS] E2a quad_0.32: constant mode at lambda = 0  (4.5e-14)
+[PASS] E2a quad_0.32: heat-kernel signature integrates to the heat trace
+[PASS] E2a xy_0.20: eigen-residual and M-orthonormality  (res 1.4e-16, orth 4.7e-14)
+[PASS] E2a xy_0.20: constant mode at lambda = 0  (4.0e-14)
+[PASS] E2a xy_0.20: heat-kernel signature integrates to the heat trace
+[PASS] E2a xz_0.20: eigen-residual and M-orthonormality  (res 1.3e-16, orth 2.6e-13)
+[PASS] E2a xz_0.20: constant mode at lambda = 0  (6.1e-14)
+[PASS] E2a xz_0.20: heat-kernel signature integrates to the heat trace
+[PASS] E2a z3_0.20: eigen-residual and M-orthonormality  (res 1.1e-16, orth 1.3e-12)
+[PASS] E2a z3_0.20: constant mode at lambda = 0  (2.3e-14)
+[PASS] E2a z3_0.20: heat-kernel signature integrates to the heat trace
+[PASS] E2a quad_0.00: checksum verifies against manifest
+[PASS] E2a quad_0.04: checksum verifies against manifest
+[PASS] E2a quad_0.08: checksum verifies against manifest
+[PASS] E2a quad_0.12: checksum verifies against manifest
+[PASS] E2a quad_0.16: checksum verifies against manifest
+[PASS] E2a quad_0.20: checksum verifies against manifest
+[PASS] E2a quad_0.24: checksum verifies against manifest
+[PASS] E2a quad_0.28: checksum verifies against manifest
+[PASS] E2a quad_0.32: checksum verifies against manifest
+[PASS] E2a xy_0.20: checksum verifies against manifest
+[PASS] E2a xz_0.20: checksum verifies against manifest
+[PASS] E2a z3_0.20: checksum verifies against manifest
+[PASS] E2a sphere entry matches exact eigenvalue l(l+1) = 2  (2.0000)
+[PASS] E2a sphere entry matches exact eigenvalue l(l+1) = 6  (5.9915)
+[PASS] E2a sphere entry matches exact eigenvalue l(l+1) = 12  (11.9573)
+[PASS] E2a sphere entry matches exact eigenvalue l(l+1) = 20  (19.8720)
+[PASS] E2b (1) reduced-order model within 1e-3 of the exact solution on every surface  (2.73e-05)
+[PASS] E2b (1) reduced-order query is cheaper and more accurate than the full solve  (10.9x fewer FLOP)
+[PASS] E2b (2) learned filter generalises to unseen surfaces within 1e-3  (1.24e-07)
+[PASS] E2b (3) regressor predicts unseen spectra within 0.5%  (1.62e-04)
+[PASS] E2c every correct continuum answer accepted
+[PASS] E2c every correct dataset-exact answer accepted
+[PASS] E2c dataset-exact questions reject every error of 0.5% or more
+[PASS] E2c continuum questions reject every 20% error
+[PASS] E2c higher resolution tightens continuum verification for every l >= 2  (l=2 1.28%->0.32%; l=3 3.19%->0.80%; l=4 9.45%->1.44%)
+[PASS] E2c exact value 2 lies within the dataset tolerance (l = 1)
+[PASS] E2c exact value 6 lies within the dataset tolerance (l = 2)
+[PASS] E2c exact value 12 lies within the dataset tolerance (l = 3)
+[PASS] E2c exact value 20 lies within the dataset tolerance (l = 4)
+[PASS] E2c multiplicity claim 'l = 1 has multiplicity 2' rejected  (dataset multiplicity 3)
+[PASS] E2d break-even is finite and positive  (7444)
+[PASS] E2e both descents converge to the exact minimiser
+[PASS] E2e covariant descent uses fewer downstream FLOP than flat descent  (2.3x)
+[PASS] E2e upstream geometry reduces the condition number by over 100x  (124x)
+[PASS] E2f fault caught: one byte altered in a dataset entry
+[PASS] E2f fault caught: eigen-data stored under the wrong surface
+[PASS] E2f fault caught: reduced-order model truncated to 5 modes
+[PASS] E2f fault caught: verifier tolerance loosened to 10%
+[PASS] E2f fault caught: flat descent with step 2.2/lambda_max
+------------------------------------------------------------------------------
+APPENDIX E2: 75/75 checks pass

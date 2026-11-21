@@ -1,0 +1,105 @@
+E7  UNCERTAINTY  (300 samples, SiC-300 at 300 degC, power configuration A)
+  sampled uniformly over the registry sweep range:
+    eta_exp_orc      [BENCH] (0.6, 0.7)     nominal 0.6
+    pinch            [DESIGN] (5.0, 15.0)    nominal 10
+    sink_approach    [DESIGN] (8.0, 20.0)    nominal 10
+    recup_min_pinch  [DESIGN] (5.0, 15.0)    nominal 5
+    loop_drop        [DESIGN] (5.0, 15.0)    nominal 10
+    subcrit_margin   [DESIGN] (2.0, 10.0)    nominal 2
+    tower_H          [DESIGN] (100.0, 300.0) nominal 200
+    eta_tower_turb   [BENCH] (0.77, 0.8)    nominal 0.77
+
+  electricity recovered: median 23.97%, min 21.74%, 5-95% 22.45-24.36%
+  ORC practice ceiling binding in 106 of 300 samples
+  cycle selected: ORC Toluene 287, sCO2 13
+
+E7.1  Equal IT power, no leakage credit (USD M per GW of IT per year, 85.1 USD/MWh)
+  vs efficient hyperscale (PUE 1.09)   nominal  178.8  median  178.7  min  162.1  5%  167.4  95%  181.6
+  vs US average (PUE 1.40)             nominal  409.9  median  409.8  min  393.2  5%  398.5  95%  412.7
+  vs global average (PUE 1.56)         nominal  529.2  median  529.1  min  512.4  5%  517.8  95%  532.0
+  lower bound, every swept input at its least favourable end together: recovery 21.30%,
+    saving against hyperscale       158.8 M USD/GW/yr
+    saving against US average       389.9 M USD/GW/yr
+    saving against global average   509.1 M USD/GW/yr
+    overhead at which the saving against hyperscale reaches zero: 0.303 (PUE-equivalent 1.30)
+
+E7.2  Exact linear sensitivities (equal IT power, vs hyperscale, nominal sample)
+  per 1 USD/MWh of electricity price : +2.101 M USD/GW/yr
+  per 0.01 of furnace overhead        : -7.45 M USD/GW/yr
+  overhead at the US-average level (0.40) instead of hyperscale (0.09): -52.3 M USD
+  break-even furnace overhead (savings vs hyperscale = 0): median 0.330, min 0.307
+  i.e. the furnace must keep its own overhead below a PUE-equivalent of 1.31;
+  with US-average overhead it still beats the US-average facility by exactly the
+  electricity it recovers
+
+E7.3  The leakage credit at equal computation (logic as efficient as silicon)
+  leakage share 0.05: 210.5 M USD/GW/yr, of which leakage credit 31.7
+  leakage share 0.15: 273.9 M USD/GW/yr, of which leakage credit 95.1
+  leakage share 0.50: 495.7 M USD/GW/yr, of which leakage credit 316.9
+
+E7.4  Break-even SiC logic efficiency epsilon* (relative to silicon)
+  leakage share 0.05: median 0.741, max 0.761 over the samples
+  leakage share 0.15: median 0.663, max 0.680 over the samples
+  leakage share 0.50: median 0.390, max 0.400 over the samples
+
+E7.5  Rank correlation of the primary savings with each sampled input
+  eta_exp_orc      +0.815
+  pinch            -0.068
+  sink_approach    -0.412
+  recup_min_pinch  -0.164
+  loop_drop        +0.010
+  subcrit_margin   -0.064
+  tower_H          +0.117
+  eta_tower_turb   +0.007
+  one at a time: tower 100 m -> 300 m changes recovery by +0.256 points (the
+  rank correlation of a contribution this small is sampling noise)
+  dominant sampled input: eta_exp_orc (+0.815)
+
+E7.7  One-at-a-time sweep ends for the swept inputs of the water stage and
+       the baseline (SiC design point, power + water configuration B)
+  med_tbt                    66: net  23.45 MW, water    5134 m3/day, grid  85.55 MW, checks pass
+  med_tbt                    72: net  23.53 MW, water    4425 m3/day, grid  85.47 MW, checks pass
+  med_kwh_m3                1.5: net  23.67 MW, water    5134 m3/day, grid  85.33 MW, checks pass
+  med_kwh_m3                2.5: net  23.45 MW, water    5134 m3/day, grid  85.55 MW, checks pass
+  med_brine_salinity         55: net  23.47 MW, water    4960 m3/day, grid  85.53 MW, checks pass
+  med_brine_salinity         70: net  23.43 MW, water    5348 m3/day, grid  85.57 MW, checks pass
+  med_loss                    0: net  23.43 MW, water    5369 m3/day, grid  85.57 MW, checks pass
+  med_loss                 0.03: net  23.50 MW, water    4699 m3/day, grid  85.50 MW, checks pass
+
+E7.6  Fault injection
+  expander efficiency 1.6 in a sample (rejected, never selected) caught
+  negative overhead inflates savings above the no-overhead ceiling caught
+  leakage credit folded into the primary result                  caught
+
+==============================================================================
+VERDICTS  APPENDIX E7
+==============================================================================
+[PASS] E7 every sample is feasible and passes the E3 physical checks
+[PASS] E7.1 savings positive in every sample against hyperscale, with no leakage credit  (min 162.1 M USD/GW/yr)
+[PASS] E7.1 recovery is monotone in each swept input (so the corner is the bound)
+[PASS] E7.1 the least favourable corner is physically valid and still saves  (158.8 M USD/GW/yr)
+[PASS] E7.1 no sample falls below the least favourable corner  (162.1 >= 158.8)
+[PASS] E7.1 savings equal recovered electricity plus the PUE gap (identity)
+[PASS] E7.2 savings exactly linear in price
+[PASS] E7.2 break-even overhead exceeds the hyperscale overhead in every sample (derived: overhead* = PUE_h - 1 + recovered)  (min 0.307 > 0.090)
+[PASS] E7.2 with US-average overhead the furnace still beats the US-average facility  (178.8 M USD/GW/yr)
+[PASS] E7.3 the leakage credit is non-negative across the sweep and rises with leakage
+[PASS] E7.4 epsilon* below 1 in every sample at the least favourable leakage share  (max 0.761)
+[PASS] E7.4 coherence: nominal epsilon* equals E4's  (0.662933 vs 0.662933)
+[PASS] E7.5 a taller tower recovers more (one-at-a-time, deterministic)  (+0.0026)
+[PASS] E7.5 a better expander never lowers recovery (one-at-a-time, deterministic)  (0.2373 -> 0.2400)
+[PASS] E7.7 med_tbt = 66: configuration B feasible, physically valid, and below hyperscale grid draw
+[PASS] E7.7 med_tbt = 72: configuration B feasible, physically valid, and below hyperscale grid draw
+[PASS] E7.7 med_kwh_m3 = 1.5: configuration B feasible, physically valid, and below hyperscale grid draw
+[PASS] E7.7 med_kwh_m3 = 2.5: configuration B feasible, physically valid, and below hyperscale grid draw
+[PASS] E7.7 med_brine_salinity = 55: configuration B feasible, physically valid, and below hyperscale grid draw
+[PASS] E7.7 med_brine_salinity = 70: configuration B feasible, physically valid, and below hyperscale grid draw
+[PASS] E7.7 med_loss = 0: configuration B feasible, physically valid, and below hyperscale grid draw
+[PASS] E7.7 med_loss = 0.03: configuration B feasible, physically valid, and below hyperscale grid draw
+[PASS] E7.7 wue_hyperscale = 0.1: water produced exceeds the hyperscale facility's water consumed  (5134 > 240 m3/day)
+[PASS] E7.7 wue_hyperscale = 0.3: water produced exceeds the hyperscale facility's water consumed  (5134 > 720 m3/day)
+[PASS] E7.6 fault caught: expander efficiency 1.6 in a sample (rejected, never selected)
+[PASS] E7.6 fault caught: negative overhead inflates savings above the no-overhead ceiling
+[PASS] E7.6 fault caught: leakage credit folded into the primary result
+------------------------------------------------------------------------------
+APPENDIX E7: 27/27 checks pass

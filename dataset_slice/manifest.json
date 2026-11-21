@@ -1,0 +1,124 @@
+{
+ "name": "master geometric dataset (prototype slice)",
+ "version": "0.1.0",
+ "operator": "cotangent Laplace-Beltrami with lumped mass",
+ "generator_sha256": "762d986305063c5c82263542cb32132600d4cf43a5391835dc8de753aa3a5c6d",
+ "level": 4,
+ "k_stored": 200,
+ "hks_times": [
+  0.005,
+  0.007454880229115496,
+  0.011115047846091413,
+  0.016572270086699935,
+  0.024708857724180293,
+  0.03684031498640387,
+  0.054928027165305905,
+  0.08189637274779156,
+  0.12210553000675683,
+  0.18205642030260805,
+  0.2714417616594907,
+  0.4047131644703236,
+  0.6034176336545168,
+  0.8996812374061423,
+  1.3414031738490433,
+  2.0
+ ],
+ "entries": [
+  {
+   "id": "quad_0.00",
+   "mode": "quad",
+   "amplitude": 0.0,
+   "n_vertices": 2562,
+   "file": "quad_0.00.npz",
+   "sha256": "264ecd514eca37776c7a20b01c461768a07b43d960825ebafd77cb60c32deaf0"
+  },
+  {
+   "id": "quad_0.04",
+   "mode": "quad",
+   "amplitude": 0.04,
+   "n_vertices": 2562,
+   "file": "quad_0.04.npz",
+   "sha256": "4769259cb26bd5ec9f88e0a23cab4506fb462d9c341fc4b37051a2675d5cc6c1"
+  },
+  {
+   "id": "quad_0.08",
+   "mode": "quad",
+   "amplitude": 0.08,
+   "n_vertices": 2562,
+   "file": "quad_0.08.npz",
+   "sha256": "a1271ad5a5efa0970264b68462b67cda765b675fc5ba03ea047912c940fb4382"
+  },
+  {
+   "id": "quad_0.12",
+   "mode": "quad",
+   "amplitude": 0.12,
+   "n_vertices": 2562,
+   "file": "quad_0.12.npz",
+   "sha256": "71ff416f1a3cb73a18006a94e6096446e21eb39b1d0be8c8c5364e7479190032"
+  },
+  {
+   "id": "quad_0.16",
+   "mode": "quad",
+   "amplitude": 0.16,
+   "n_vertices": 2562,
+   "file": "quad_0.16.npz",
+   "sha256": "fad657960c96ff3180812440a1f0119a09fdc1c301cbec1b1f491a3eff77e701"
+  },
+  {
+   "id": "quad_0.20",
+   "mode": "quad",
+   "amplitude": 0.2,
+   "n_vertices": 2562,
+   "file": "quad_0.20.npz",
+   "sha256": "5b1fe9d9f2463b0d69a1795e129bc8e036e75c6e0330181abac9c94d13ef5d35"
+  },
+  {
+   "id": "quad_0.24",
+   "mode": "quad",
+   "amplitude": 0.24,
+   "n_vertices": 2562,
+   "file": "quad_0.24.npz",
+   "sha256": "b1392cec194aa22c0318cf5935ac9ac9b0e0a1319d3150085007bd2bf3d7c6a4"
+  },
+  {
+   "id": "quad_0.28",
+   "mode": "quad",
+   "amplitude": 0.28,
+   "n_vertices": 2562,
+   "file": "quad_0.28.npz",
+   "sha256": "4066576e33ca7babbb4bc102665491c7a4e8f9650dd511eaaf5c7851c1318db5"
+  },
+  {
+   "id": "quad_0.32",
+   "mode": "quad",
+   "amplitude": 0.32,
+   "n_vertices": 2562,
+   "file": "quad_0.32.npz",
+   "sha256": "bae862bc4b14061c9bc9eeaa3bf57ff27bf13be03032cb85c4006888d736f248"
+  },
+  {
+   "id": "xy_0.20",
+   "mode": "xy",
+   "amplitude": 0.2,
+   "n_vertices": 2562,
+   "file": "xy_0.20.npz",
+   "sha256": "5646186bc38f76c8338f78daa535c170042e241f73bdfe3a3c5de3ce7cfa17f3"
+  },
+  {
+   "id": "xz_0.20",
+   "mode": "xz",
+   "amplitude": 0.2,
+   "n_vertices": 2562,
+   "file": "xz_0.20.npz",
+   "sha256": "b0f05ea3e3f02fa4d44cf8e1c4128786453851c94cca1b088a6ccb1d96d69bf9"
+  },
+  {
+   "id": "z3_0.20",
+   "mode": "z3",
+   "amplitude": 0.2,
+   "n_vertices": 2562,
+   "file": "z3_0.20.npz",
+   "sha256": "f94836eecf8acf084382680f7ec5c30fae175e8cb90eb37eaeea07ed39a18168"
+  }
+ ]
+}

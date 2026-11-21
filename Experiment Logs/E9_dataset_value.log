@@ -1,0 +1,132 @@
+E9  THE VALUE OF THE MASTER GEOMETRIC DATASET
+
+E9.1  Compute once, use everywhere (public corpus, 1,261,300 geometries)
+  grid per joule of computation: hyperscale 1.090, furnace 0.850 (E3, 24.0% recovered)
+  tier                                     FLOP total       IT MWh    hyper USD  furnace USD     heat MWh
+  T4 full spectrum      n=1e+06             1.135e+25    4.971e+04    4.611e+06    3.596e+06    4.971e+04
+  T5 T4 x 100 metric families               1.135e+27    4.971e+06    4.611e+08    3.596e+08    4.971e+06
+  T5 corpus, computed once in the furnace, against N developers each computing it:
+    N =  1: separately 4.61e+08 USD, once 3.60e+08 USD, saved 1.01e+08 USD (22%)
+    N =  5: separately 2.31e+09 USD, once 3.60e+08 USD, saved 1.95e+09 USD (84%)
+    N = 10: separately 4.61e+09 USD, once 3.60e+08 USD, saved 4.25e+09 USD (92%)
+    N = 50: separately 2.31e+10 USD, once 3.60e+08 USD, saved 2.27e+10 USD (98%)
+  each additional developer served saves 4.61e+08 USD and 5.42e+06 MWh
+
+E9.2  Sample efficiency: raw coordinates vs the dataset's eigenbasis (level 4, degree-6 monomials)
+  bumpy 0.25: 84 features each; feature conditioning raw 3.2e+03, dataset 1.0e+00
+    heat diffusion    n=168 raw 2.9e-01 data 6.6e-02  n=336 raw 1.7e-01 data 3.8e-02  n=672 raw 1.5e-01 data 3.3e-02  n=1344 raw 1.3e-01 data 3.2e-02
+                      raw features reach the dataset's 168-sample error: not within 1344 samples
+    Poisson response  n=168 raw 5.2e-02 data 7.5e-03  n=336 raw 3.0e-02 data 4.9e-03  n=672 raw 2.4e-02 data 4.4e-03  n=1344 raw 2.4e-02 data 4.2e-03
+                      raw features reach the dataset's 168-sample error: not within 1344 samples
+  bumpy 0.40: 84 features each; feature conditioning raw 1.0e+03, dataset 1.0e+00
+    heat diffusion    n=168 raw 3.5e-01 data 1.3e-01  n=336 raw 2.8e-01 data 7.4e-02  n=672 raw 2.2e-01 data 7.0e-02  n=1344 raw 2.0e-01 data 6.9e-02
+                      raw features reach the dataset's 168-sample error: not within 1344 samples
+    Poisson response  n=168 raw 1.7e-01 data 1.5e-02  n=336 raw 8.2e-02 data 9.0e-03  n=672 raw 6.8e-02 data 7.5e-03  n=1344 raw 5.9e-02 data 7.1e-03
+                      raw features reach the dataset's 168-sample error: not within 1344 samples
+  z3 0.20: 84 features each; feature conditioning raw 1.9e+09, dataset 1.0e+00
+    heat diffusion    n=168 raw 1.2e-01 data 3.3e-02  n=336 raw 8.6e-02 data 2.3e-02  n=672 raw 7.8e-02 data 2.0e-02  n=1344 raw 7.5e-02 data 1.9e-02
+                      raw features reach the dataset's 168-sample error: not within 1344 samples
+    Poisson response  n=168 raw 3.1e-04 data 1.0e-04  n=336 raw 1.8e-04 data 7.5e-05  n=672 raw 1.6e-04 data 6.3e-05  n=1344 raw 1.6e-04 data 6.2e-05
+                      raw features reach the dataset's 168-sample error: not within 1344 samples
+  error ratio raw / dataset: 2.4 to 11.1 (median 4.1)
+
+E9.3  Convergence scaling with resolution (screened Poisson, bumpy 0.25)
+  stored share of the spectrum 0.02
+  level       n      K kappa flat kappa cov       GD       CG   cov GD  cov PCG
+      2     162      3         70    28.58      419       21      170       22
+      3     642     12        275    31.29     1614       42      216       28
+      4    2562     51       1175    37.50     6837       87      259       26
+      5   10242    204       5068    45.31    29443      178      313       22
+  growth over 3 refinements: GD x70.3, CG x8.5; covariant GD x1.84, PCG x1.00
+  no iteration advantage over CG at level 2 (only 3 stored modes)
+  FLOP break-even against CG: one operator application must cost more than n/a, 6.2e+04, 2.2e+05, 1.2e+06 FLOP
+  (n/a, 7, 6, 8 times a sparse mesh product); downstream operators heavier than this, such
+  as a model evaluation per step, favour the covariant method in FLOP as well
+  stored share of the spectrum 0.05
+  level       n      K kappa flat kappa cov       GD       CG   cov GD  cov PCG
+      2     162      8         70    12.57      419       21       87       15
+      3     642     32        275    12.90     1614       42       89       18
+      4    2562    128       1175    15.91     6837       87      110       15
+      5   10242    512       5068    18.63    29443      178      129       10
+  growth over 3 refinements: GD x70.3, CG x8.5; covariant GD x1.48, PCG x0.67
+  FLOP break-even against CG: one operator application must cost more than 1.3e+04, 6.2e+04, 2.7e+05, 1.2e+06 FLOP
+  (6, 7, 8, 9 times a sparse mesh product); downstream operators heavier than this, such
+  as a model evaluation per step, favour the covariant method in FLOP as well
+  stored share of the spectrum 0.10
+  level       n      K kappa flat kappa cov       GD       CG   cov GD  cov PCG
+      2     162     16         70     5.51      419       21       38       13
+      3     642     64        275     6.79     1614       42       47       12
+      4    2562    256       1175     8.41     6837       87       58       10
+      5   10242   1024       5068     9.83    29443      178       68        5
+  growth over 3 refinements: GD x70.3, CG x8.5; covariant GD x1.79, PCG x0.38
+  FLOP break-even against CG: one operator application must cost more than 1.7e+04, 6.6e+04, 3.4e+05, 1.2e+06 FLOP
+  (8, 7, 10, 8 times a sparse mesh product); downstream operators heavier than this, such
+  as a model evaluation per step, favour the covariant method in FLOP as well
+
+E9.4  Ground truth on the unit sphere (exact spectrum l(l+1))
+  level       n  certifiable err full-spectrum FLOP      detects >= 
+      2     162         1.03e-01           3.83e+07             none
+      3     642         2.65e-02           2.38e+09             3.0%
+      4    2562         6.68e-03           1.51e+11             1.0%
+      5   10242         1.67e-03           9.67e+12             0.3%
+  error ratio per refinement: 3.87, 3.97, 3.99 (second order = 4)
+  each 4x gain in certifiable precision costs 64x in full-spectrum work: the
+  furnace pays it once for every developer
+
+E9.5  One ledger: break-even downstream solves per surface (nominal share,
+       covariant GD against flat GD, as in E2e)
+  level   dataset FLOP    saved/solve     break-even  J saved/solve
+      2      1.192e+05      4.131e+05           0.29      6.512e-06
+      3      5.834e+06      9.122e+06           0.64      1.438e-04
+      4      3.450e+08      1.477e+08           2.34      2.328e-03
+      5      2.163e+10      2.393e+09           9.04      3.773e-02
+  the dataset's own cost grows faster (x49/59/63 per refinement) than the saving per use:
+  deep geometry is expensive to compute and cheap to reuse, which is why it should
+  be computed once, by one furnace, for every developer
+  at level 5 one covariant solve takes 228x fewer iterations than flat GD, 18x fewer than CG,
+  and the iteration advantage grows with resolution
+  T5 corpus: 4.97e+06 MWh of computation, 3.60e+08 USD in the furnace; each developer spared it saves 4.61e+08 USD
+
+E9.6  Fault injection
+  preconditioner without its high-mode term (singular metric)              caught
+  dataset arm given another surface's eigenbasis (geometry mismatch)       caught
+  sphere checked against the wrong law l(l+2)                              caught
+  corpus priced without the furnace's recovered electricity                caught
+  dataset basis replaced by raw features in the dataset arm                caught
+
+==============================================================================
+VERDICTS  APPENDIX E9
+==============================================================================
+[PASS] E9.1 T4: furnace computes the corpus for less than hyperscale  (22% less)
+[PASS] E9.1 T5: furnace computes the corpus for less than hyperscale  (22% less)
+[PASS] E9.1 coherence: tier energy equals E1.4
+[PASS] E9.1 computing once saves at every N, including a single developer
+[PASS] E9.2 the dataset basis gives lower error at every sample size, target and surface  (24 of 24)
+[PASS] E9.2 the dataset basis is perfectly conditioned (orthonormal in the mass metric)  (1.000000)
+[PASS] E9.3 share 0.02: flat conditioning grows as h^-2 (x4 per refinement, within 15%)  (3.92, 4.26, 4.31)
+[PASS] E9.3 share 0.02: three refinements cost covariant GD less growth than one refinement costs flat GD  (x1.84 < x3.85)
+[PASS] E9.3 share 0.02: the same holds against the strongest flat method (CG)  (x1.00 < x2.00)
+[PASS] E9.3 share 0.02: covariant PCG iterations do not grow with resolution while CG grows at every refinement  (PCG 22 -> 22; CG 21 -> 178)
+[PASS] E9.3 share 0.02: covariant GD uses fewer FLOP than flat GD at every level  (1.3x, 1.9x, 2.0x, 1.9x)
+[PASS] E9.3 share 0.05: flat conditioning grows as h^-2 (x4 per refinement, within 15%)  (3.92, 4.26, 4.31)
+[PASS] E9.3 share 0.05: three refinements cost covariant GD less growth than one refinement costs flat GD  (x1.48 < x3.85)
+[PASS] E9.3 share 0.05: the same holds against the strongest flat method (CG)  (x0.67 < x2.00)
+[PASS] E9.3 share 0.05: covariant PCG iterations do not grow with resolution while CG grows at every refinement  (PCG 15 -> 10; CG 21 -> 178)
+[PASS] E9.3 share 0.05: covariant GD uses fewer FLOP than flat GD at every level  (1.6x, 2.1x, 2.0x, 1.9x)
+[PASS] E9.3 share 0.1: flat conditioning grows as h^-2 (x4 per refinement, within 15%)  (3.92, 4.26, 4.31)
+[PASS] E9.3 share 0.1: three refinements cost covariant GD less growth than one refinement costs flat GD  (x1.79 < x3.85)
+[PASS] E9.3 share 0.1: the same holds against the strongest flat method (CG)  (x0.38 < x2.00)
+[PASS] E9.3 share 0.1: covariant PCG iterations do not grow with resolution while CG grows at every refinement  (PCG 13 -> 5; CG 21 -> 178)
+[PASS] E9.3 share 0.1: covariant GD uses fewer FLOP than flat GD at every level  (2.2x, 2.1x, 1.9x, 1.8x)
+[PASS] E9.4 certifiable precision improves at second order (ratio 4 per refinement, within 15%)  (3.87, 3.97, 3.99)
+[PASS] E9.4 every correct answer is accepted at every resolution
+[PASS] E9.4 the smallest detectable corruption falls with resolution
+[PASS] E9.5 the saving per downstream use grows by more than 4x per refinement  (x22.1, x16.2, x16.2)
+[PASS] E9.5 the stored spectrum is repaid within a finite number of uses at every level  (0.29, 0.64, 2.34, 9.04)
+[PASS] E9.6 fault caught: preconditioner without its high-mode term (singular metric)
+[PASS] E9.6 fault caught: dataset arm given another surface's eigenbasis (geometry mismatch)
+[PASS] E9.6 fault caught: sphere checked against the wrong law l(l+2)
+[PASS] E9.6 fault caught: corpus priced without the furnace's recovered electricity
+[PASS] E9.6 fault caught: dataset basis replaced by raw features in the dataset arm
+------------------------------------------------------------------------------
+APPENDIX E9: 31/31 checks pass

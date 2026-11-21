@@ -1,0 +1,105 @@
+E6  THE BEST USES OF THE SECONDARY ENERGY (value per MWh of furnace heat)
+gas CO2 factor 0.1810 t/MWh; boiler efficiency 0.857; electrolysis 50 kWh/kg (range (50.0, 83.0))
+
+E6.1  Which processes each chip class can reach (coolant return >= required + 10 K)
+  plastics pyrolysis               500 degC
+  steam 39.8 bar(a)                250 degC
+  steam 15.5 bar(a)                200 degC
+  steam 4.8 bar(a)                 150 degC
+  amine solvent regeneration       120 degC
+  Si        65.0 degC: no process band
+  SiC-300  300.0 degC: steam 39.8 bar(a); steam 15.5 bar(a); steam 4.8 bar(a); amine solvent regeneration
+  SiC-max  465.0 degC: steam 39.8 bar(a); steam 15.5 bar(a); steam 4.8 bar(a); amine solvent regeneration
+
+E6.2  Value per MWh of heat, US prices (electricity 85.1, gas 11.87 USD/MWh)
+  Si (65.0 degC):
+    water first (MED on chip heat) at 1.00 USD/m3                      5.47
+    grid electricity (ORC Toluene, 2.7%)                               2.29
+    water first (MED on chip heat) at 0.50 USD/m3                      2.18
+  SiC-300 (300.0 degC):
+    cascade: power (ORC Toluene, 12.1%) -> amine solvent regeneration    22.49
+    power + water at 1.00 USD/m3                                      22.10
+    power + water at 0.50 USD/m3                                      21.03
+    cascade: power (ORC Toluene, 8.9%) -> steam 4.8 bar(a)            20.20
+    grid electricity (sCO2, 23.7%)                                    20.20
+    cascade: power (ORC Toluene, 4.0%) -> steam 15.5 bar(a)           16.74
+    cascade: power (ORC Toluene, 0.5%) -> steam 39.8 bar(a)           14.18
+    direct process heat                                               13.86
+  SiC-max (465.0 degC):
+    power + water at 1.00 USD/m3                                      31.23
+    power + water at 0.50 USD/m3                                      30.31
+    grid electricity (sCO2, 34.8%)                                    29.60
+    cascade: power (ORC Toluene, 11.4%) -> amine solvent regeneration    21.97
+    cascade: power (ORC Toluene, 8.1%) -> steam 4.8 bar(a)            19.63
+    cascade: power (ORC Toluene, 3.0%) -> steam 15.5 bar(a)           16.01
+    direct process heat                                               13.86
+  hydrogen equals selling the electricity at 4.25-7.06 USD/kg (electrolysis (50.0, 83.0) kWh/kg);
+  it is worth more only above that price
+
+E6.3  Break-even electricity price above which power beats direct heat
+  region                                                   heat value         300 degC       465.0 degC
+  US (EIA industrial power, Henry Hub, no carbon price)  USD    13.9 USD        58.4 USD        39.8
+  Europe (TTF, lowest month; before carbon costs)        USD    37.7 USD       159.0 USD       108.5
+  Europe (TTF, 2025 average; before carbon costs)        USD    47.6 USD       200.6 USD       136.9
+  Europe (TTF, highest month; before carbon costs)       USD    71.3 USD       300.5 USD       205.0
+  where the local industrial electricity price lies below the break-even, the
+  furnace heat is worth more delivered as heat than converted to power
+
+E6.4  Plastics or oil? Per MWh of heat every band is worth the displaced fuel:
+  US (EIA industrial power, Henry Hub, no carbon price)  USD 13.86 per MWh (gas 11.87 + carbon 0.00, / 0.857)
+  Europe (TTF, lowest month; before carbon costs)        USD 37.74 per MWh (gas 32.35 + carbon 0.00, / 0.857)
+  Europe (TTF, 2025 average; before carbon costs)        USD 47.62 per MWh (gas 40.81 + carbon 0.00, / 0.857)
+  Europe (TTF, highest month; before carbon costs)       USD 71.31 per MWh (gas 61.11 + carbon 0.00, / 0.857)
+  the choice between bands is set by temperature (E6.1) and by the value of the
+  product each band enables, which lies outside an energy valuation
+
+E6.5  Fault injection (through the same functions)
+  boiler efficiency 1.2 (heat worth more than its fuel)          caught
+  electricity at the SiC design point valued at 60% conversion   caught
+  silicon heat assigned to plastics pyrolysis                    caught
+  negative carbon price                                          caught
+  heat credited at twice its displaced-fuel value                caught
+
+==============================================================================
+VERDICTS  APPENDIX E6
+==============================================================================
+[PASS] E6.0 US: valuation inputs obey the first law and sign conventions
+[PASS] E6.0 EU-lo: valuation inputs obey the first law and sign conventions
+[PASS] E6.0 EU: valuation inputs obey the first law and sign conventions
+[PASS] E6.0 EU-hi: valuation inputs obey the first law and sign conventions
+[PASS] E6.1 plastics pyrolysis is beyond every chip class within the demonstrated SiC junction limit (derived finding)  (needs coolant 520 degC, i.e. Tj 555 degC at Rth 0.050, P 700 W; demonstrated 500 degC)
+[PASS] E6.1 pyrolysis unreachable at both ends of its published temperature range  (range (500.0, 650.0) degC)
+[PASS] E6.1 silicon reaches no steam or process band  (65.0 degC)
+[PASS] E6.1 a hotter supply reaches every band a cooler one reaches
+[PASS] E6.1 the SiC design point reaches every steam band and amine regeneration
+[PASS] E6.2 Si: water first (MED on chip heat) at 1.00 USD/m3 within its physical bound  (5.47)
+[PASS] E6.2 Si: grid electricity (ORC Toluene, 2.7%) within its physical bound  (2.29)
+[PASS] E6.2 Si: water first (MED on chip heat) at 0.50 USD/m3 within its physical bound  (2.18)
+[PASS] E6.2 SiC-300: cascade: power (ORC Toluene, 12.1%) -> amine solvent regeneration within its physical bound  (22.49)
+[PASS] E6.2 SiC-300: power + water at 1.00 USD/m3 within its physical bound  (22.10)
+[PASS] E6.2 SiC-300: power + water at 0.50 USD/m3 within its physical bound  (21.03)
+[PASS] E6.2 SiC-300: cascade: power (ORC Toluene, 8.9%) -> steam 4.8 bar(a) within its physical bound  (20.20)
+[PASS] E6.2 SiC-300: grid electricity (sCO2, 23.7%) within its physical bound  (20.20)
+[PASS] E6.2 SiC-300: cascade: power (ORC Toluene, 4.0%) -> steam 15.5 bar(a) within its physical bound  (16.74)
+[PASS] E6.2 SiC-300: cascade: power (ORC Toluene, 0.5%) -> steam 39.8 bar(a) within its physical bound  (14.18)
+[PASS] E6.2 SiC-300: direct process heat within its physical bound  (13.86)
+[PASS] E6.2 SiC-max: power + water at 1.00 USD/m3 within its physical bound  (31.23)
+[PASS] E6.2 SiC-max: power + water at 0.50 USD/m3 within its physical bound  (30.31)
+[PASS] E6.2 SiC-max: grid electricity (sCO2, 34.8%) within its physical bound  (29.60)
+[PASS] E6.2 SiC-max: cascade: power (ORC Toluene, 11.4%) -> amine solvent regeneration within its physical bound  (21.97)
+[PASS] E6.2 SiC-max: cascade: power (ORC Toluene, 8.1%) -> steam 4.8 bar(a) within its physical bound  (19.63)
+[PASS] E6.2 SiC-max: cascade: power (ORC Toluene, 3.0%) -> steam 15.5 bar(a) within its physical bound  (16.01)
+[PASS] E6.2 SiC-max: direct process heat within its physical bound  (13.86)
+[PASS] E6.2 at US prices, every SiC class earns most from an electricity-led option  (water first (MED on chip heat) at 1.00 USD/m3; cascade: power (ORC Toluene, 12.1%) -> amine solvent regeneration; power + water at 1.00 USD/m3)
+[PASS] E6.2 at US prices, grid electricity beats direct process heat at the SiC design point  (20.20 vs 13.86)
+[PASS] E6.2 hydrogen break-even = electricity price x electrolysis energy (derived)
+[PASS] E6.3 US: break-even below the EIA industrial price (electricity wins)  (58.4 < 85.1 USD/MWh)
+[PASS] E6.3 higher gas price raises the break-even
+[PASS] E6.3 a hotter supply lowers the break-even (better cycle)
+[PASS] E6.5 fault caught: boiler efficiency 1.2 (heat worth more than its fuel)
+[PASS] E6.5 fault caught: electricity at the SiC design point valued at 60% conversion
+[PASS] E6.5 fault caught: silicon heat assigned to plastics pyrolysis
+[PASS] E6.5 fault caught: negative carbon price
+[PASS] E6.5 fault caught: heat credited at twice its displaced-fuel value
+------------------------------------------------------------------------------
+APPENDIX E6: 38/38 checks pass

@@ -1,0 +1,109 @@
+E8  INCREMENTAL PRODUCTION AND THE WHOLE ENERGY SYSTEM
+gas 11.87 USD/MWh (HHV), boiler efficiency 0.857, CO2 0.1810 t/MWh gas
+
+E8.1  Value around each MWh of energy (EIA MECS 2018, Table 6.1)
+  industry                                     kBtu/USD     VA USD/MWh displaced USD/MWh     VA ref USD/MWh  leverage    VA bn USD
+                                                             of energy  of heat (lower)    of heat (upper)           (fuel/ratio)
+  Petroleum refineries (324110)                    28.6          119.3            13.86              139.2     10.0x        118.0
+  Petrochemicals (325110)                          23.1          147.7            13.86              172.4     12.4x         24.6
+  Other basic organic chemicals (325199)           19.8          172.3            13.86              201.1     14.5x         37.5
+  Plastics materials and resins (325211)           20.5          166.4            13.86              194.2     14.0x         32.6
+  All manufacturing                                 5.6          609.3            13.86              711.0     51.3x          nan
+  in the oil-to-products chain each MWh of heat sits inside 10-15 times the value
+  of the gas it displaces; displacement alone (E6) captures only the lower bound
+  refinery caveat: 65% of refinery fuel is 'Other', mainly byproduct still gas;
+  the refinery ratio is per unit of all fuel, purchased or byproduct
+  at the European gas price (TTF 2025 average, 40.81 USD/MWh) displacement is 47.62 USD per MWh of heat, before carbon costs
+
+E8.2  Reachable market
+  Si       delivers process heat up to 45 degC
+  SiC-300  delivers process heat up to 280 degC
+  SiC-max  delivers process heat up to 445 degC
+  US process heat below 300 degC: 8010 TBtu of 11000 (73%), a continuous 268 GW
+  refineries: 62% of process heat (1380 TBtu) lies at 100-300 degC
+  steam cracking: the pyrolysis section (65% of cracker energy) runs at 750 degC or more
+  energy per tonne (DOE bandwidth, onsite): ethylene 16.4 GJ; HDPE 2.41, LLDPE 2.03, LDPE 2.66, PP 1.43 GJ
+  polymerisation needs 9-16% of the energy of cracking per unit mass
+  the below-300 degC band could absorb the heat of 268 GW of furnace computation;
+  furnace heat does not lack buyers at any foreseeable scale
+
+E8.2b The refinery
+  US refineries burn 3375 TBtu of fuel a year; 65% of it is their own byproduct gas
+  1380 TBtu of refinery process heat (62%) lies at 100-300 degC, within the design's reach
+  supplying it from computation frees at least 1380 TBtu of fuel a year, 41% of refinery fuel use,
+  and avoids at least 73 Mt of CO2; it is the heat of 46 GW of computation
+  the refinery then makes the same products while burning less of its own output:
+  the hydrocarbons it no longer burns for heat remain available as product
+
+E8.3  The whole system, per GW of computation per year
+  both systems deliver the same computation and the same process heat
+
+  direct heat (SiC 300 C, all IT heat to process)
+                                              today   integrated
+    grid electricity (TWh)                    9.548        9.548
+    gas burned (TWh, HHV)                    10.222        0.000
+    CO2 from gas (Mt)                         1.851        0.000
+    energy bought (TWh)                      19.770        9.548
+    process heat delivered 8.760 TWh in both; computation 1 GW-year in both
+    saved: 10.222 TWh of energy bought (52%), 1.851 Mt CO2 from gas; 121 M USD at EIA electricity and Henry Hub gas
+
+  cascade (SiC 300 C: ORC Toluene 12.1% power, rest to amine regeneration)
+                                              today   integrated
+    grid electricity (TWh)                    9.548        8.487
+    gas burned (TWh, HHV)                     8.983        0.000
+    CO2 from gas (Mt)                         1.626        0.000
+    energy bought (TWh)                      18.532        8.487
+    process heat delivered 7.699 TWh in both; computation 1 GW-year in both
+    saved: 10.045 TWh of energy bought (54%), 1.626 Mt CO2 from gas; 197 M USD at EIA electricity and Henry Hub gas
+
+  the cascade generates 1.061 TWh of electricity and, in exchange, displaces 1.238 TWh less gas
+  at US prices the cascade is worth +76 M USD per GW-year more
+  these values count displacement only; E8.1 bounds the incremental-production value above it
+  direct heat to plastics resins: displacement 121 M USD; value-added reference 1701 M USD per GW-year
+
+E8.4  Fault injection
+  boiler efficiency 1.2 (heat from less gas than its energy)     caught
+  integrated output above its input (power 0.5 plus all heat)    caught
+  value-added reference added to displacement (double count)     caught
+  negative energy-to-value ratio                                 caught
+  cracker pyrolysis assigned to the hottest chip                 caught
+
+==============================================================================
+VERDICTS  APPENDIX E8
+==============================================================================
+[PASS] E8.1 Petroleum refineries (324110): value-added reference exceeds the displaced fuel (lower bound)  (x10.0)
+[PASS] E8.1 Petroleum refineries (324110): leverage equals value added per MWh / gas price (identity)
+[PASS] E8.1 Petrochemicals (325110): value-added reference exceeds the displaced fuel (lower bound)  (x12.4)
+[PASS] E8.1 Petrochemicals (325110): leverage equals value added per MWh / gas price (identity)
+[PASS] E8.1 Other basic organic chemicals (325199): value-added reference exceeds the displaced fuel (lower bound)  (x14.5)
+[PASS] E8.1 Other basic organic chemicals (325199): leverage equals value added per MWh / gas price (identity)
+[PASS] E8.1 Plastics materials and resins (325211): value-added reference exceeds the displaced fuel (lower bound)  (x14.0)
+[PASS] E8.1 Plastics materials and resins (325211): leverage equals value added per MWh / gas price (identity)
+[PASS] E8.1 All manufacturing: value-added reference exceeds the displaced fuel (lower bound)  (x51.3)
+[PASS] E8.1 All manufacturing: leverage equals value added per MWh / gas price (identity)
+[PASS] E8.1 every oil-to-products industry carries at least ten times the displaced fuel in value added  (min x10.0)
+[PASS] E8.2 the hottest SiC class reaches the whole below-300 degC band  (445 degC)
+[PASS] E8.2 the SiC design point reaches every registered steam band  (280 >= 250 degC)
+[PASS] E8.2 silicon reaches none of the 100-300 degC band  (45 degC)
+[PASS] E8.2 share arithmetic reproduces the stated shares to within one point  (72.8% vs 73%; 62.4% vs 63%)
+[PASS] E8.2 cracker pyrolysis is beyond every chip class (derived finding)  (445 < 750 degC)
+[PASS] E8.2 DOE intensity x production reproduces DOE total for ethylene (consistency)  (373.8 TBtu)
+[PASS] E8.2b heat within reach is a share of refinery process heat between 0 and 1  (0.624)
+[PASS] E8.2b fuel freed does not exceed the fuel refineries burn  (1610 < 3375 TBtu)
+[PASS] E8.2b computation needed equals the heat supplied (First Law)  (46.2 GW)
+[PASS] E8.2b the SiC design point reaches the refinery band's steam levels and silicon does not
+[PASS] E8.3 direct heat : same heat delivered by both systems
+[PASS] E8.3 direct heat : integrated useful output never exceeds its electricity input (no energy created)  (8.760 <= 9.548 TWh)
+[PASS] E8.3 direct heat : integrated system buys less energy than today's  (9.548 < 19.770 TWh)
+[PASS] E8.3 direct heat : CO2 from gas avoided = gas avoided x EPA factor
+[PASS] E8.3 cascade (SiC: same heat delivered by both systems
+[PASS] E8.3 cascade (SiC: integrated useful output never exceeds its electricity input (no energy created)  (8.760 <= 9.548 TWh)
+[PASS] E8.3 cascade (SiC: integrated system buys less energy than today's  (8.487 < 18.532 TWh)
+[PASS] E8.3 cascade (SiC: CO2 from gas avoided = gas avoided x EPA factor
+[PASS] E8.4 fault caught: boiler efficiency 1.2 (heat from less gas than its energy)
+[PASS] E8.4 fault caught: integrated output above its input (power 0.5 plus all heat)
+[PASS] E8.4 fault caught: value-added reference added to displacement (double count)
+[PASS] E8.4 fault caught: negative energy-to-value ratio
+[PASS] E8.4 fault caught: cracker pyrolysis assigned to the hottest chip
+------------------------------------------------------------------------------
+APPENDIX E8: 34/34 checks pass

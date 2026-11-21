@@ -1,0 +1,553 @@
+%% sn-bibliography.bib
+%% Every key cited in main.tex and in registry.py resolves here; the
+%% dependency checker (D2) fails on any that does not. The annote field of a
+%% benchmark records where in the source its value is found.
+
+%%============================================================================%%
+%% PHYSICAL CONSTANTS, UNITS AND LAWS
+%%============================================================================%%
+
+@book{BIPM2019,
+  author    = {{Bureau International des Poids et Mesures}},
+  title     = {The International System of Units ({SI})},
+  edition   = {9},
+  publisher = {BIPM},
+  address   = {S{\`e}vres},
+  year      = {2019},
+  annote    = {Exact values of g\_n, 0 degC = 273.15 K and the standard atmosphere}
+}
+
+@article{Tiesinga2021,
+  author  = {Tiesinga, Eite and Mohr, Peter J. and Newell, David B. and Taylor, Barry N.},
+  title   = {{CODATA} recommended values of the fundamental physical constants: 2018},
+  journal = {Reviews of Modern Physics},
+  volume  = {93},
+  number  = {2},
+  pages   = {025010},
+  year    = {2021},
+  doi     = {10.1103/RevModPhys.93.025010}
+}
+
+@techreport{ThompsonTaylor2008,
+  author      = {Thompson, Ambler and Taylor, Barry N.},
+  title       = {Guide for the Use of the {International System of Units (SI)}},
+  number      = {811},
+  type        = {NIST Special Publication},
+  institution = {National Institute of Standards and Technology},
+  year        = {2008},
+  annote      = {British thermal unit (International Table) = 1055.05585262 J}
+}
+
+@misc{IUPACGoldBook,
+  author       = {{International Union of Pure and Applied Chemistry}},
+  title        = {Standard ambient temperature and pressure},
+  howpublished = {IUPAC Compendium of Chemical Terminology (the Gold Book)},
+  year         = {n.d.},
+  annote       = {SATP: 298.15 K}
+}
+
+@article{Landauer1961,
+  author  = {Landauer, Rolf},
+  title   = {Irreversibility and heat generation in the computing process},
+  journal = {IBM Journal of Research and Development},
+  volume  = {5},
+  number  = {3},
+  pages   = {183--191},
+  year    = {1961},
+  doi     = {10.1147/rd.53.0183}
+}
+
+@book{Callen1985,
+  author    = {Callen, Herbert B.},
+  title     = {Thermodynamics and an Introduction to Thermostatistics},
+  edition   = {2},
+  publisher = {Wiley},
+  address   = {New York},
+  year      = {1985}
+}
+
+%%============================================================================%%
+%% THE GEOMETRIC OPERATOR AND ITS COMPUTATION
+%%============================================================================%%
+
+@article{PinkallPolthier1993,
+  author  = {Pinkall, Ulrich and Polthier, Konrad},
+  title   = {Computing discrete minimal surfaces and their conjugates},
+  journal = {Experimental Mathematics},
+  volume  = {2},
+  number  = {1},
+  pages   = {15--36},
+  year    = {1993},
+  doi     = {10.1080/10586458.1993.10504266}
+}
+
+@incollection{Meyer2003,
+  author    = {Meyer, Mark and Desbrun, Mathieu and Schr{\"o}der, Peter and Barr, Alan H.},
+  title     = {Discrete differential-geometry operators for triangulated 2-manifolds},
+  booktitle = {Visualization and Mathematics {III}},
+  editor    = {Hege, Hans-Christian and Polthier, Konrad},
+  series    = {Mathematics and Visualization},
+  pages     = {35--57},
+  publisher = {Springer},
+  address   = {Berlin},
+  year      = {2003},
+  doi       = {10.1007/978-3-662-05105-4_2}
+}
+
+@book{GolubVanLoan2013,
+  author    = {Golub, Gene H. and Van Loan, Charles F.},
+  title     = {Matrix Computations},
+  edition   = {4},
+  publisher = {Johns Hopkins University Press},
+  address   = {Baltimore},
+  year      = {2013},
+  annote    = {Sec. 8.3, The Symmetric QR Algorithm: 4n^3/3 flops for the eigenvalues plus about 8n^3 to accumulate the transformations; Ch. 10, Lanczos}
+}
+
+@article{Williams2009,
+  author  = {Williams, Samuel and Waterman, Andrew and Patterson, David},
+  title   = {Roofline: an insightful visual performance model for multicore architectures},
+  journal = {Communications of the ACM},
+  volume  = {52},
+  number  = {4},
+  pages   = {65--76},
+  year    = {2009},
+  doi     = {10.1145/1498765.1498785}
+}
+
+%%============================================================================%%
+%% PUBLIC GEOMETRY CORPORA
+%%============================================================================%%
+
+@inproceedings{Koch2019,
+  author    = {Koch, Sebastian and Matveev, Albert and Jiang, Zhongshi and Williams, Francis and Artemov, Alexey and Burnaev, Evgeny and Alexa, Marc and Zorin, Denis and Panozzo, Daniele},
+  title     = {{ABC}: A big {CAD} model dataset for geometric deep learning},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {9601--9611},
+  year      = {2019}
+}
+
+@misc{Chang2015,
+  author        = {Chang, Angel X. and Funkhouser, Thomas and Guibas, Leonidas and Hanrahan, Pat and Huang, Qixing and Li, Zimo and Savarese, Silvio and Savva, Manolis and Song, Shuran and Su, Hao and Xiao, Jianxiong and Yi, Li and Yu, Fisher},
+  title         = {{ShapeNet}: An information-rich {3D} model repository},
+  eprint        = {1512.03012},
+  archivePrefix = {arXiv},
+  year          = {2015},
+  annote        = {ShapeNetCore: about 51,300 unique models}
+}
+
+@misc{ZhouJacobson2016,
+  author        = {Zhou, Qingnan and Jacobson, Alec},
+  title         = {{Thingi10K}: A dataset of 10,000 {3D}-printing models},
+  eprint        = {1605.04797},
+  archivePrefix = {arXiv},
+  year          = {2016}
+}
+
+@article{Burley2023,
+  author  = {Burley, Stephen K. and others},
+  title   = {{RCSB} {Protein Data Bank} ({RCSB.org}): delivery of experimentally-determined {PDB} structures alongside one million computed structure models of proteins from artificial intelligence/machine learning},
+  journal = {Nucleic Acids Research},
+  volume  = {51},
+  number  = {D1},
+  pages   = {D488--D508},
+  year    = {2023},
+  doi     = {10.1093/nar/gkac1077},
+  annote  = {Approximately 200,000 experimentally determined structures}
+}
+
+%%============================================================================%%
+%% THE REFERENCE ACCELERATOR
+%%============================================================================%%
+
+@misc{NVIDIA2024H100,
+  author       = {{NVIDIA Corporation}},
+  title        = {{NVIDIA H100 Tensor Core GPU} Datasheet},
+  howpublished = {\url{https://www.nvidia.com/en-us/data-center/h100/}},
+  year         = {2024},
+  annote       = {H100 SXM: FP64 Tensor Core 67 TFLOP/s, HBM3 3.35 TB/s, max TDP 700 W}
+}
+
+@techreport{NVIDIA2022Hopper,
+  author      = {{NVIDIA Corporation}},
+  title       = {{NVIDIA H100 Tensor Core GPU} Architecture},
+  number      = {V1.02},
+  type        = {Whitepaper},
+  institution = {NVIDIA},
+  year        = {2022},
+  annote      = {Table 3: die size 814 mm\textsuperscript{2}, 80 billion transistors}
+}
+
+@misc{TOP5002024,
+  author       = {{TOP500}},
+  title        = {{TOP500} List, {June} 2024: {Eagle} ({Microsoft} {NDv5}, {NVIDIA H100})},
+  howpublished = {\url{https://www.top500.org/lists/top500/list/2024/06/}},
+  year         = {2024},
+  annote       = {Rank 3; Rmax 561.20 PFlop/s, Rpeak 846.84 PFlop/s}
+}
+
+%%============================================================================%%
+%% DATA-CENTER BASELINES
+%%============================================================================%%
+
+@misc{Google2026PUE,
+  author       = {{Google}},
+  title        = {Data center efficiency: power usage effectiveness},
+  howpublished = {\url{https://www.google.com/about/datacenters/efficiency/}},
+  year         = {2026},
+  annote       = {Fleet-wide trailing annual PUE 1.09}
+}
+
+@techreport{Shehabi2024,
+  author      = {Shehabi, Arman and Smith, Sarah J. and Hubbard, Alex and Newkirk, Alex and Lei, Nuoa and Siddik, Md Abu Bakar and Holecek, Billie and Koomey, Jonathan and Masanet, Eric and Sartor, Dale},
+  title       = {2024 {United States} Data Center Energy Usage Report},
+  number      = {LBNL-2001637},
+  institution = {Lawrence Berkeley National Laboratory},
+  year        = {2024},
+  annote      = {US average PUE and WUE; hyperscale WUE range}
+}
+
+@techreport{Donnellan2024,
+  author      = {Donnellan, Douglas and Lawrence, Andy and Bizo, Daniel and Judge, Peter and O'Brien, John and Davis, Jacqueline and Smolaks, Max and Williams-George, Jabari and Weinschenk, Rose},
+  title       = {Uptime Institute Global Data Center Survey 2024},
+  number      = {146M},
+  type        = {Keynote Report},
+  institution = {Uptime Institute},
+  year        = {2024},
+  annote      = {p. 7: industry average PUE of 1.56}
+}
+
+%%============================================================================%%
+%% SEMICONDUCTORS AND COOLING
+%%============================================================================%%
+
+@book{SzeNg2007,
+  author    = {Sze, S. M. and Ng, Kwok K.},
+  title     = {Physics of Semiconductor Devices},
+  edition   = {3},
+  publisher = {Wiley-Interscience},
+  address   = {Hoboken, NJ},
+  year      = {2007},
+  doi       = {10.1002/0470068329},
+  annote    = {Ch. 1: intrinsic carrier density and the silicon bandgap}
+}
+
+@book{KimotoCooper2014,
+  author    = {Kimoto, Tsunenobu and Cooper, James A.},
+  title     = {Fundamentals of Silicon Carbide Technology: Growth, Characterization, Devices, and Applications},
+  publisher = {Wiley--IEEE Press},
+  address   = {Singapore},
+  year      = {2014},
+  isbn      = {978-1-118-31352-7},
+  annote    = {Sec. 2.2.1: bandgap 3.26 eV for 4H-SiC at room temperature}
+}
+
+@article{Neudeck2018,
+  author  = {Neudeck, Philip G. and Spry, David J. and Krasowski, Michael J. and Prokop, Norman F. and Beheim, Glenn M. and Chen, Liang-Yu and Chang, Carl W.},
+  title   = {Yearlong 500 {\textdegree}{C} operational demonstration of up-scaled {4H-SiC} {JFET} integrated circuits},
+  journal = {Journal of Microelectronics and Electronic Packaging},
+  volume  = {15},
+  number  = {4},
+  pages   = {163--170},
+  year    = {2018},
+  doi     = {10.4071/imaps.729648},
+  annote  = {Stable operation for over one year at 500 degC in air (about 10,000 h, tests running); conference version HiTEC 2018, NASA NTRS 20180003391}
+}
+
+@misc{IntelTjmax,
+  author       = {{Intel Corporation}},
+  title        = {Information about Temperature for {Intel} Processors},
+  howpublished = {Intel Support, Article 000005597},
+  year         = {n.d.},
+  annote       = {Tjunction max typically 100--110 degC, product dependent}
+}
+
+@article{Kim2003,
+  author  = {Kim, Nam Sung and Austin, Todd and Blaauw, David and Mudge, Trevor and Flautner, Kriszti{\'a}n and Hu, Jie S. and Irwin, Mary Jane and Kandemir, Mahmut and Narayanan, Vijaykrishnan},
+  title   = {Leakage current: {Moore's} law meets static power},
+  journal = {Computer},
+  volume  = {36},
+  number  = {12},
+  pages   = {68--75},
+  year    = {2003},
+  doi     = {10.1109/MC.2003.1250885},
+  annote  = {Qualitative: leakage approaching total dynamic power. No total-power fraction is given; this study sweeps the leakage share}
+}
+
+@article{TuckermanPease1981,
+  author  = {Tuckerman, David B. and Pease, R. F. W.},
+  title   = {High-performance heat sinking for {VLSI}},
+  journal = {IEEE Electron Device Letters},
+  volume  = {2},
+  number  = {5},
+  pages   = {126--129},
+  year    = {1981},
+  doi     = {10.1109/EDL.1981.25367},
+  annote  = {790 W/cm\textsuperscript{2} at 71 K rise; Table I: 0.090 degC/W over 1 cm\textsuperscript{2}}
+}
+
+%%============================================================================%%
+%% POWER CYCLES, HEAT EXCHANGE AND THERMOPHYSICAL PROPERTIES
+%%============================================================================%%
+
+@article{Quoilin2013,
+  author  = {Quoilin, Sylvain and Van Den Broek, Martijn and Declaye, S{\'e}bastien and Dewallef, Pierre and Lemort, Vincent},
+  title   = {Techno-economic survey of {Organic Rankine Cycle} ({ORC}) systems},
+  journal = {Renewable and Sustainable Energy Reviews},
+  volume  = {22},
+  pages   = {168--186},
+  year    = {2013},
+  doi     = {10.1016/j.rser.2013.01.028},
+  annote  = {Sec. 4: high-temperature ORC efficiency does not exceed 24\%. Sec. 10: overall expander isentropic efficiency max around 70\% with generator losses. Sec. 6.2.2: screw expanders not much above 60\%. Sec. 8.2: measured pump efficiencies 7--25\%; centrifugal pumps claimed above 60\%, unconfirmed}
+}
+
+@techreport{Dostal2004,
+  author      = {Dostal, Vaclav and Driscoll, Michael J. and Hejzlar, Pavel},
+  title       = {A Supercritical Carbon Dioxide Cycle for Next Generation Nuclear Reactors},
+  number      = {MIT-ANP-TR-100},
+  institution = {Massachusetts Institute of Technology, Center for Advanced Nuclear Energy Systems},
+  year        = {2004},
+  annote      = {hdl:1721.1/67671. Sec. 2.2: turbine 90\% (p. 9), compressor 89\% and inlet 32 degC (p. 11); abstract: recompression cycle 45.3\% at 550 degC, 20 MPa}
+}
+
+@article{LinnhoffHindmarsh1983,
+  author  = {Linnhoff, Bodo and Hindmarsh, E.},
+  title   = {The pinch design method for heat exchanger networks},
+  journal = {Chemical Engineering Science},
+  volume  = {38},
+  number  = {5},
+  pages   = {745--763},
+  year    = {1983},
+  doi     = {10.1016/0009-2509(83)80185-7}
+}
+
+@article{Bell2014,
+  author  = {Bell, Ian H. and Wronski, Jorrit and Quoilin, Sylvain and Lemort, Vincent},
+  title   = {Pure and pseudo-pure fluid thermophysical property evaluation and the open-source thermophysical property library {CoolProp}},
+  journal = {Industrial \& Engineering Chemistry Research},
+  volume  = {53},
+  number  = {6},
+  pages   = {2498--2508},
+  year    = {2014},
+  doi     = {10.1021/ie4033999}
+}
+
+%%============================================================================%%
+%% THE TOWER AND THE ATMOSPHERE
+%%============================================================================%%
+
+@article{ZhouXu2016,
+  author  = {Zhou, Xinping and Xu, Yangyang},
+  title   = {Solar updraft tower power generation},
+  journal = {Solar Energy},
+  volume  = {128},
+  pages   = {95--125},
+  year    = {2016},
+  doi     = {10.1016/j.solener.2014.06.029},
+  annote  = {Eq. 14: ideal efficiency gH/(cp T0); Table 4: turbine efficiencies 77--80\%; Table 7: two-thirds turbine pressure share. Values read from the article; DOI confirmed}
+}
+
+@book{WallaceHobbs2006,
+  author    = {Wallace, John M. and Hobbs, Peter V.},
+  title     = {Atmospheric Science: An Introductory Survey},
+  edition   = {2},
+  publisher = {Academic Press},
+  address   = {Burlington, MA},
+  year      = {2006},
+  annote    = {Virtual temperature (Ch. 3)}
+}
+
+%%============================================================================%%
+%% DESALINATION
+%%============================================================================%%
+
+@article{Sharqawy2010,
+  author  = {Sharqawy, Mostafa H. and Lienhard V, John H. and Zubair, Syed M.},
+  title   = {Thermophysical properties of seawater: a review of existing correlations and data},
+  journal = {Desalination and Water Treatment},
+  volume  = {16},
+  pages   = {354--380},
+  year    = {2010},
+  doi     = {10.5004/dwt.2010.1079},
+  annote  = {Eq. 9 (Jamieson et al.), 0--180 degC, 0--180 g/kg, +-0.28\%}
+}
+
+@inproceedings{AlKaraghouli2011,
+  author    = {Al-Karaghouli, Ali A.},
+  title     = {Renewable energy applications in water desalination},
+  booktitle = {New Water New Energy: Proceedings of the 56th Annual New Mexico Water Conference},
+  pages     = {79--87},
+  publisher = {New Mexico Water Resources Research Institute},
+  address   = {Las Cruces, NM},
+  year      = {2011},
+  annote    = {MED: electrical energy 1.5--2.5 kWh/m3; GOR 8--12; top brine temperature 66--72 degC}
+}
+
+@article{DardourSafa2017,
+  author  = {Dardour, Saied and Safa, Henri},
+  title   = {Energetic and economic cost of nuclear heat: impact on the cost of desalination},
+  journal = {EPJ Nuclear Sciences \& Technologies},
+  volume  = {3},
+  pages   = {1},
+  year    = {2017},
+  doi     = {10.1051/epjn/2016037},
+  annote  = {Table 11: worked MED example at a 75 degC top brine temperature; manufacturers' GOR of 10--16 in working units}
+}
+
+@article{Ghaffour2013,
+  author  = {Ghaffour, Noreddine and Missimer, Thomas M. and Amy, Gary L.},
+  title   = {Technical review and evaluation of the economics of water desalination: current and future challenges for better water supply sustainability},
+  journal = {Desalination},
+  volume  = {309},
+  pages   = {197--207},
+  year    = {2013},
+  doi     = {10.1016/j.desal.2012.10.015},
+  annote  = {Abstract: below US\$0.50/m3 at the best large SWRO site, US\$1.00/m3 elsewhere; Sec. 6.2: MED US\$0.70--1.20/m3}
+}
+
+%%============================================================================%%
+%% ENERGY PRICES, CONVERSION AND EMISSION FACTORS
+%%============================================================================%%
+
+@misc{EIA2026EPM,
+  author       = {{U.S. Energy Information Administration}},
+  title        = {{Electric Power Monthly}, {Table 5.3}: Average Price of Electricity to Ultimate Customers},
+  howpublished = {\url{https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_3}},
+  year         = {2026},
+  annote       = {Industrial sector, 2025 annual average}
+}
+
+@misc{EIA2026STEO,
+  author       = {{U.S. Energy Information Administration}},
+  title        = {{Short-Term Energy Outlook}: Natural Gas},
+  howpublished = {\url{https://www.eia.gov/outlooks/steo/report/natgas.php}},
+  year         = {2026},
+  annote       = {Henry Hub 2026 average}
+}
+
+@techreport{WorldBank2026,
+  author      = {{World Bank}},
+  title       = {{Commodity Markets Outlook}: Commodities Price Data ({The Pink Sheet})},
+  institution = {World Bank Group},
+  address     = {Washington, DC},
+  year        = {2026},
+  annote      = {Editions of 6 January 2026 and 4 May 2026. Natural gas, Europe (Netherlands Title Transfer Facility), USD/mmbtu: 2025 average 11.96; monthly low 9.48 (December 2025), monthly high 17.91 (March 2026)}
+}
+
+@techreport{EPA2025,
+  author      = {{U.S. Environmental Protection Agency}},
+  title       = {{GHG Emission Factors Hub}},
+  institution = {U.S. EPA},
+  year        = {2025},
+  annote      = {Natural gas: 53.06 kg CO2 per MMBtu (HHV)}
+}
+
+@techreport{DOE2012Steam,
+  author      = {{U.S. Department of Energy}},
+  title       = {Benchmark the Fuel Cost of Steam Generation},
+  number      = {DOE/GO-102012-3391},
+  type        = {Steam Tip Sheet 15},
+  institution = {Office of Energy Efficiency and Renewable Energy},
+  year        = {2012},
+  annote      = {Natural-gas boiler combustion efficiency with economiser (HHV basis); also in the DOE Steam System Sourcebook}
+}
+
+@techreport{IRENA2020,
+  author      = {{International Renewable Energy Agency}},
+  title       = {Green Hydrogen Cost Reduction: Scaling up Electrolysers to Meet the 1.5\,{\textdegree}{C} Climate Goal},
+  institution = {IRENA},
+  address     = {Abu Dhabi},
+  year        = {2020},
+  annote      = {Electrolyser system energy 50--83 kWh/kg H2}
+}
+
+%%============================================================================%%
+%% INDUSTRIAL PROCESS HEAT AND PRODUCTION
+%%============================================================================%%
+
+@techreport{McMillan2021,
+  author      = {McMillan, Colin and Schoeneberger, Carrie and Zhang, Jingyi and Kurup, Parthiv and Masanet, Eric and Margolis, Robert and Meyers, Steven and Bannister, Mike and Rosenlieb, Evan and Xi, William},
+  title       = {Opportunities for Solar Industrial Process Heat in the {United States}},
+  number      = {NREL/TP-6A20-77760},
+  institution = {National Renewable Energy Laboratory},
+  address     = {Golden, CO},
+  year        = {2021},
+  annote      = {Sec. 1.7 and Table 2: 11,000 TBtu; Sec. 2.1: about 73\% (8,010 TBtu) below 300 degC; Table 3: refineries 2,210 TBtu, 1,380 TBtu at 100--300 degC}
+}
+
+@techreport{EIA2021MECS,
+  author      = {{U.S. Energy Information Administration}},
+  title       = {{Manufacturing Energy Consumption Survey} 2018},
+  institution = {U.S. EIA},
+  year        = {2021},
+  annote      = {Table 3.2, Fuel Consumption, 2018; Table 6.1, Consumption Ratios of Fuel, 2018 (thousand Btu per dollar of value added). \url{https://www.eia.gov/consumption/manufacturing/data/2018/}}
+}
+
+@article{Rochelle2009,
+  author  = {Rochelle, Gary T.},
+  title   = {Amine scrubbing for {CO2} capture},
+  journal = {Science},
+  volume  = {325},
+  number  = {5948},
+  pages   = {1652--1654},
+  year    = {2009},
+  doi     = {10.1126/science.1176731}
+}
+
+@article{AlSalem2017,
+  author  = {Al-Salem, S. M. and Antelava, A. and Constantinou, A. and Manos, G. and Dutta, A.},
+  title   = {A review on thermal and catalytic pyrolysis of plastic solid waste ({PSW})},
+  journal = {Journal of Environmental Management},
+  volume  = {197},
+  pages   = {177--198},
+  year    = {2017},
+  doi     = {10.1016/j.jenvman.2017.03.084},
+  annote  = {Introduction: liquid oils and waxes at 500--650 degC}
+}
+
+@article{Ren2006,
+  author  = {Ren, Tao and Patel, Martin K. and Blok, Kornelis},
+  title   = {Olefins from conventional and heavy feedstocks: energy use in steam cracking and alternative processes},
+  journal = {Energy},
+  volume  = {31},
+  number  = {4},
+  pages   = {425--451},
+  year    = {2006},
+  doi     = {10.1016/j.energy.2005.04.001},
+  annote  = {Abstract: the pyrolysis section of a naphtha cracker consumes approximately 65\% of total process energy}
+}
+
+@article{Ren2008,
+  author  = {Ren, Tao and Patel, Martin K. and Blok, Kornelis},
+  title   = {Steam cracking and methane to olefins: energy use, {CO2} emissions and production costs},
+  journal = {Energy},
+  volume  = {33},
+  pages   = {817--833},
+  year    = {2008},
+  doi     = {10.1016/j.energy.2008.01.002},
+  annote  = {Sec. 2.1: steam cracking at 750--900 degC}
+}
+
+@techreport{Brueske2015,
+  author      = {Brueske, Sabine and Kramer, Caroline and Fisher, Aaron},
+  title       = {Bandwidth Study on Energy Use and Potential Energy Saving Opportunities in {U.S.} Chemical Manufacturing},
+  number      = {DOE/EE-1229},
+  institution = {Energetics Inc. for U.S. DOE, Advanced Manufacturing Office},
+  year        = {2015},
+  annote      = {OSTI 1248749. Table 3-1 (2010 production) and Table 4-5 (current typical onsite energy intensity), read from the report}
+}
+
+%%============================================================================%%
+%% MARS
+%%============================================================================%%
+
+@article{Franz2017,
+  author  = {Franz, Heather B. and Trainer, Melissa G. and Malespin, Charles A. and Mahaffy, Paul R. and Atreya, Sushil K. and Becker, Richard H. and Benna, Mehdi and Conrad, Pamela G. and Eigenbrode, Jennifer L. and Freissinet, Caroline and Manning, Heidi L. K. and Prats, Benito D. and Raaen, Eric and Wong, Michael H.},
+  title   = {Initial {SAM} calibration gas experiments on {Mars}: quadrupole mass spectrometer results and implications},
+  journal = {Planetary and Space Science},
+  volume  = {138},
+  pages   = {44--54},
+  year    = {2017},
+  doi     = {10.1016/j.pss.2017.01.014},
+  annote  = {Table 5, revised volume mixing ratios: CO2 0.949, N2 0.0279, Ar 0.0208}
+}

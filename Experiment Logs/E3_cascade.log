@@ -1,0 +1,182 @@
+E3  THE THERMODYNAMIC CASCADE  (per 100 MW of compute)
+ambient 25 degC, seawater 25 degC, tower height 200 m
+
+E3.1 The originating post's figures at 25 degC ambient
+  Carnot ceilings: 80 degC 15.57% (post ~15%), 300 degC 47.98% (post ~48%)
+  recovered at 80 degC: 5.41% (post ~5%)
+  ORC at 300 degC: 23.01% (post ~20%)
+  ratio of recovered energy: 4.3 (post ~4x)
+  tower at ~1% of rejected heat: a height of 596 m (0.34% at 200 m)
+
+E3.2 Power cycles
+chip     cfg cycle                         Tsrc   Tsink      eta   Carnot
+Si       A   ORC Toluene                   60.0    35.0    2.70%    7.50%
+SiC-300  A   sCO2 recuperated Brayton     295.0    35.0   23.73%   45.76%
+SiC-300  B   sCO2 recuperated Brayton     295.0    35.0   23.73%   45.76%
+SiC-max  A   sCO2 recuperated Brayton     460.0    35.0   34.79%   57.97%
+SiC-max  B   sCO2 recuperated Brayton     460.0    35.0   34.79%   57.97%
+
+E3.3 Cascade outputs per 100 MW of compute
+chip     cfg  cycle MW  tower MW   MED MW   net MW  water m3/d   GOR  grid MW
+Si       A        2.70     0.327    0.000     3.02           0     -   105.98
+Si       C        0.00     0.336    1.647    -1.31       15810  4.33   110.31
+SiC-300  A       23.73     0.256    0.000    23.99           0     -    85.01
+SiC-300  B       23.73     0.256    0.535    23.45        5134  6.43    85.55
+SiC-300  C        0.00     0.336    2.483    -2.15       23841  6.43   111.15
+SiC-max  A       34.79     0.219    0.000    35.00           0     -    74.00
+SiC-max  B       34.79     0.219    0.457    34.55        4390  6.43    74.45
+SiC-max  C        0.00     0.336    2.483    -2.15       23841  6.43   111.15
+
+E3.4 Against conventional data centres (100 MW IT)
+  industry average       grid 140.0 MW, water consumed 864 m3/day
+  efficient hyperscale   grid 109.0 MW, water consumed 240 m3/day
+chip     cfg   grid MW  vs hyperscale     vs average water vs hyperscale m3/d
+Si       A      105.98           2.8%          24.3%                      240
+Si       C      110.31          -1.2%          21.2%                    16050
+SiC-300  A       85.01          22.0%          39.3%                      240
+SiC-300  B       85.55          21.5%          38.9%                     5374
+SiC-300  C      111.15          -2.0%          20.6%                    24081
+SiC-max  A       74.00          32.1%          47.1%                      240
+SiC-max  B       74.45          31.7%          46.8%                     4630
+SiC-max  C      111.15          -2.0%          20.6%                    24081
+
+E3.5 Tower efficiency against height (ideal g.H/(cp.T0); realised 2/3 x turbine)
+  H   100 m: ideal 0.327%, realised 0.168%
+  H   200 m: ideal 0.654%, realised 0.336%
+  H   500 m: ideal 1.634%, realised 0.839%
+  H  1000 m: ideal 3.269%, realised 1.678%
+  H  2000 m: ideal 6.537%, realised 3.356%
+
+E3.6 Benchmark comparison at the SiC design point: toluene ORC state-point model 23.01%, demonstrated practice 24%, credited 23.01%; simple sCO2 23.73%
+     the cycle assigned to each class is the better of the two: Si ORC:Toluene; SiC-300 sCO2; SiC-max sCO2
+E3.6 ORC pump efficiency 0.25: toluene ORC at the design point 23.01%
+E3.6 ORC pump efficiency 0.60: toluene ORC at the design point 24.00%
+E3.6 sCO2 compressor inlet: derived 35.0 degC (ambient + sink approach), reference study 32.0 degC; the derived inlet is the less favourable
+
+E3.7 Fault injection
+  ORC expander efficiency 1.6 (beats Carnot)              caught
+  sCO2 turbine efficiency 1.5                             caught
+  recuperator effectiveness 1.5 (temperature cross)       caught
+  MED loss -0.5 (energy created in effects)               caught
+  rejected heat dropped from ledger                       caught
+  tower turbine efficiency 4.0                            caught
+
+E3.8 Annual value at $85/MWh (net electricity recovered)
+  Si       A:     26475 MWh/yr  $2.3M
+  Si       C:    -11487 MWh/yr  $-1.0M
+  SiC-300  A:    210141 MWh/yr  $17.9M
+  SiC-300  B:    205456 MWh/yr  $17.5M
+  SiC-300  C:    -18815 MWh/yr  $-1.6M
+  SiC-max  A:    306637 MWh/yr  $26.1M
+  SiC-max  B:    302630 MWh/yr  $25.8M
+  SiC-max  C:    -18815 MWh/yr  $-1.6M
+
+==============================================================================
+VERDICTS  APPENDIX E3
+==============================================================================
+[PASS] E3.1 post figure reproduced: Carnot ceiling at the low temperature  (0.1557)
+[PASS] E3.1 post figure reproduced: Carnot ceiling at the high temperature  (0.4798)
+[PASS] E3.1 post figure reproduced: recovery at the low temperature  (0.0541)
+[PASS] E3.1 post figure met or exceeded: ORC at the high temperature  (0.2301)
+[PASS] E3.1 post figure reproduced: about four times the recovered energy  (4.30)
+[PASS] E3.1 post figure located: the chimney law gives it at a derived tower height  (596 m)
+[PASS] E3.5 tower efficiency scales linearly with height  (ratio 5.000000)
+[PASS] E3.2/3 Si A: cycle energy closure  (0.0e+00)
+[PASS] E3.2/3 Si A: cycle below Carnot  (eta 0.0270 < 0.0750)
+[PASS] E3.2/3 Si A: cycle entropy generation >= 0  (6.621e+01 J/kgK)
+[PASS] E3.2/3 Si A: pump entropy rise >= 0 (adiabatic)  (6.900e-02 J/kgK)
+[PASS] E3.2/3 Si A: expander entropy rise >= 0 (adiabatic)  (2.464e+01 J/kgK)
+[PASS] E3.2/3 Si A: recuperator pinch >= minimum  (5.00 K)
+[PASS] E3.2/3 Si A: tower below ideal bound g.H/(cp.T0)  (0.00336 <= 0.00654)
+[PASS] E3.2/3 Si A: facility energy closure  (0.00e+00 W)
+[PASS] E3.2/3 Si A: cascade only adds  (0.0302 >= 0.0270)
+[PASS] E3.2/3 Si C: MED energy closure  (-1.49e-08 W)
+[PASS] E3.2/3 Si C: MED GOR below number of effects  (GOR 4.33, N 5)
+[PASS] E3.2/3 Si C: tower below ideal bound g.H/(cp.T0)  (0.00336 <= 0.00654)
+[PASS] E3.2/3 Si C: facility energy closure  (0.00e+00 W)
+[PASS] E3.2/3 Si C: cascade only adds  (0.0034 >= 0.0000)
+[PASS] E3.2/3 SiC-300 A: cycle energy closure  (0.0e+00)
+[PASS] E3.2/3 SiC-300 A: cycle below Carnot  (eta 0.2373 < 0.4576)
+[PASS] E3.2/3 SiC-300 A: cycle entropy generation >= 0  (1.303e+02 J/kgK)
+[PASS] E3.2/3 SiC-300 A: compressor entropy rise >= 0 (adiabatic)  (9.953e+00 J/kgK)
+[PASS] E3.2/3 SiC-300 A: turbine entropy rise >= 0 (adiabatic)  (1.846e+01 J/kgK)
+[PASS] E3.2/3 SiC-300 A: recuperator pinch >= minimum  (5.00 K)
+[PASS] E3.2/3 SiC-300 A: tower below ideal bound g.H/(cp.T0)  (0.00336 <= 0.00654)
+[PASS] E3.2/3 SiC-300 A: facility energy closure  (0.00e+00 W)
+[PASS] E3.2/3 SiC-300 A: cascade only adds  (0.2399 >= 0.2373)
+[PASS] E3.2/3 SiC-300 B: cycle energy closure  (0.0e+00)
+[PASS] E3.2/3 SiC-300 B: cycle below Carnot  (eta 0.2373 < 0.4576)
+[PASS] E3.2/3 SiC-300 B: cycle entropy generation >= 0  (1.303e+02 J/kgK)
+[PASS] E3.2/3 SiC-300 B: compressor entropy rise >= 0 (adiabatic)  (9.953e+00 J/kgK)
+[PASS] E3.2/3 SiC-300 B: turbine entropy rise >= 0 (adiabatic)  (1.846e+01 J/kgK)
+[PASS] E3.2/3 SiC-300 B: recuperator pinch >= minimum  (5.00 K)
+[PASS] E3.2/3 SiC-300 B: MED energy closure  (-7.45e-09 W)
+[PASS] E3.2/3 SiC-300 B: MED GOR below number of effects  (GOR 6.43, N 9)
+[PASS] E3.2/3 SiC-300 B: tower below ideal bound g.H/(cp.T0)  (0.00336 <= 0.00654)
+[PASS] E3.2/3 SiC-300 B: facility energy closure  (0.00e+00 W)
+[PASS] E3.2/3 SiC-300 B: cascade only adds  (0.2399 >= 0.2373)
+[PASS] E3.2/3 SiC-300 C: MED energy closure  (-1.49e-08 W)
+[PASS] E3.2/3 SiC-300 C: MED GOR below number of effects  (GOR 6.43, N 9)
+[PASS] E3.2/3 SiC-300 C: tower below ideal bound g.H/(cp.T0)  (0.00336 <= 0.00654)
+[PASS] E3.2/3 SiC-300 C: facility energy closure  (0.00e+00 W)
+[PASS] E3.2/3 SiC-300 C: cascade only adds  (0.0034 >= 0.0000)
+[PASS] E3.2/3 SiC-max A: cycle energy closure  (0.0e+00)
+[PASS] E3.2/3 SiC-max A: cycle below Carnot  (eta 0.3479 < 0.5797)
+[PASS] E3.2/3 SiC-max A: cycle entropy generation >= 0  (1.604e+02 J/kgK)
+[PASS] E3.2/3 SiC-max A: compressor entropy rise >= 0 (adiabatic)  (9.953e+00 J/kgK)
+[PASS] E3.2/3 SiC-max A: turbine entropy rise >= 0 (adiabatic)  (1.952e+01 J/kgK)
+[PASS] E3.2/3 SiC-max A: recuperator pinch >= minimum  (5.00 K)
+[PASS] E3.2/3 SiC-max A: tower below ideal bound g.H/(cp.T0)  (0.00336 <= 0.00654)
+[PASS] E3.2/3 SiC-max A: facility energy closure  (0.00e+00 W)
+[PASS] E3.2/3 SiC-max A: cascade only adds  (0.3500 >= 0.3479)
+[PASS] E3.2/3 SiC-max B: cycle energy closure  (0.0e+00)
+[PASS] E3.2/3 SiC-max B: cycle below Carnot  (eta 0.3479 < 0.5797)
+[PASS] E3.2/3 SiC-max B: cycle entropy generation >= 0  (1.604e+02 J/kgK)
+[PASS] E3.2/3 SiC-max B: compressor entropy rise >= 0 (adiabatic)  (9.953e+00 J/kgK)
+[PASS] E3.2/3 SiC-max B: turbine entropy rise >= 0 (adiabatic)  (1.952e+01 J/kgK)
+[PASS] E3.2/3 SiC-max B: recuperator pinch >= minimum  (5.00 K)
+[PASS] E3.2/3 SiC-max B: MED energy closure  (0.00e+00 W)
+[PASS] E3.2/3 SiC-max B: MED GOR below number of effects  (GOR 6.43, N 9)
+[PASS] E3.2/3 SiC-max B: tower below ideal bound g.H/(cp.T0)  (0.00336 <= 0.00654)
+[PASS] E3.2/3 SiC-max B: facility energy closure  (0.00e+00 W)
+[PASS] E3.2/3 SiC-max B: cascade only adds  (0.3500 >= 0.3479)
+[PASS] E3.2/3 SiC-max C: MED energy closure  (-1.49e-08 W)
+[PASS] E3.2/3 SiC-max C: MED GOR below number of effects  (GOR 6.43, N 9)
+[PASS] E3.2/3 SiC-max C: tower below ideal bound g.H/(cp.T0)  (0.00336 <= 0.00654)
+[PASS] E3.2/3 SiC-max C: facility energy closure  (0.00e+00 W)
+[PASS] E3.2/3 SiC-max C: cascade only adds  (0.0034 >= 0.0000)
+[PASS] E3.3 config A: electricity rises with chip temperature  (3.02 < 23.99 < 35.00)
+[PASS] E3.3 Si A: eta_total = eta1 + (1-eta1)eta2  (0.030222)
+[PASS] E3.3 SiC-300 A: eta_total = eta1 + (1-eta1)eta2  (0.239887)
+[PASS] E3.3 SiC-max A: eta_total = eta1 + (1-eta1)eta2  (0.350042)
+[PASS] E3.6 Si C: coolant below benchmark MED steam, GOR falls below the commercial range (derived finding)  (steam 57.0 degC, GOR 4.33)
+[PASS] E3.6 SiC-300 B: MED GOR does not exceed the published upper bound 12 (water never overstated)  (GOR 6.43; published 8-12; water understated by up to 20% against the commercial lower bound)
+[PASS] E3.6 SiC-300 C: MED GOR does not exceed the published upper bound 12 (water never overstated)  (GOR 6.43; published 8-12; water understated by up to 20% against the commercial lower bound)
+[PASS] E3.6 SiC-max B: MED GOR does not exceed the published upper bound 12 (water never overstated)  (GOR 6.43; published 8-12; water understated by up to 20% against the commercial lower bound)
+[PASS] E3.6 SiC-max C: MED GOR does not exceed the published upper bound 12 (water never overstated)  (GOR 6.43; published 8-12; water understated by up to 20% against the commercial lower bound)
+[PASS] E3.6 credited ORC efficiency never exceeds demonstrated practice
+[PASS] E3.6 credited ORC efficiency is the lesser of model and practice  (0.2301)
+[PASS] E3.6 pump efficiency 0.25: ORC physically valid  (0.2301)
+[PASS] E3.6 pump efficiency 0.6: ORC physically valid  (0.2400)
+[PASS] E3.6 sCO2 compressor inlet equals the registry derivation  (35.0 degC)
+[PASS] E3.6 simple sCO2 below the recompression benchmark at higher temperature  (0.3479 < 0.453)
+[PASS] E3.4 Si C: water produced exceeds the hyperscale facility's water consumed  (15810 > 240 m3/day)
+[PASS] E3.4 Si C: water value exceeds the electricity premium over hyperscale (benchmark prices)  ($7905 vs $2678 per day)
+[PASS] E3.4 SiC-300 A: grid draw below efficient hyperscale  (85.01 MW)
+[PASS] E3.4 SiC-300 B: grid draw below efficient hyperscale  (85.55 MW)
+[PASS] E3.4 SiC-300 B: water produced exceeds the hyperscale facility's water consumed  (5134 > 240 m3/day)
+[PASS] E3.4 SiC-300 C: water produced exceeds the hyperscale facility's water consumed  (23841 > 240 m3/day)
+[PASS] E3.4 SiC-300 C: water value exceeds the electricity premium over hyperscale (benchmark prices)  ($11920 vs $4387 per day)
+[PASS] E3.4 SiC-max A: grid draw below efficient hyperscale  (74.00 MW)
+[PASS] E3.4 SiC-max B: grid draw below efficient hyperscale  (74.45 MW)
+[PASS] E3.4 SiC-max B: water produced exceeds the hyperscale facility's water consumed  (4390 > 240 m3/day)
+[PASS] E3.4 SiC-max C: water produced exceeds the hyperscale facility's water consumed  (23841 > 240 m3/day)
+[PASS] E3.4 SiC-max C: water value exceeds the electricity premium over hyperscale (benchmark prices)  ($11920 vs $4387 per day)
+[PASS] E3.7 fault caught: ORC expander efficiency 1.6 (beats Carnot)
+[PASS] E3.7 fault caught: sCO2 turbine efficiency 1.5
+[PASS] E3.7 fault caught: recuperator effectiveness 1.5 (temperature cross)
+[PASS] E3.7 fault caught: MED loss -0.5 (energy created in effects)
+[PASS] E3.7 fault caught: rejected heat dropped from ledger
+[PASS] E3.7 fault caught: tower turbine efficiency 4.0
+------------------------------------------------------------------------------
+APPENDIX E3: 104/104 checks pass

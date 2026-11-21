@@ -1,0 +1,83 @@
+D5 declared protocol constants (output grids, specimen definitions, units):
+  E1_geometric_heat.py       COOLANT_SCAN extra rows of the E1.3 table (output grid)
+  E2_insight_baseline.py     GEOMS        slice membership (specimen)
+  E2_insight_baseline.py     HELD_OUT_A   held-out amplitudes (specimen)
+  E2_insight_baseline.py     HKS_TIMES    heat-kernel signature times (specimen)
+  E2_insight_baseline.py     MODES        deformation polynomials (specimen)
+  E2_insight_baseline.py     SWEEP        deformation amplitudes of the slice (specimen)
+  E4_leakage_crossover.py    SCAN_STEP    coolant scan resolution (output grid)
+  E5_tower.py                H_COLUMN     column heights tabulated (output grid)
+  E5_tower.py                H_SCAN       tower heights tabulated (output grid)
+  E5_tower.py                T_EXHAUST    exhaust temperatures tabulated (output grid)
+  E6_best_uses.py            REGIONS      0.0: the United States has no federal carbon price
+  E7_uncertainty.py          CHIP         list indices
+  E7_uncertainty.py          MW_PER_GW    unit
+  E8_incremental_production.py MW_PER_GW    unit
+  E8_incremental_production.py TBTU_TO_MWH  unit (1 TBtu = 1e6 MMBtu, x registry MWh/MMBtu)
+  E9_dataset_value.py        BETA         screening of the test operator (specimen)
+  E9_dataset_value.py        DEVELOPERS   developer counts tabulated (output grid)
+  E9_dataset_value.py        HEAT_T       diffusion time of the heat target (specimen)
+  E9_dataset_value.py        J_PER_MWH    unit
+  E9_dataset_value.py        LEARN_LEVEL  resolution of the learning specimens
+  E9_dataset_value.py        LEVELS       mesh resolutions (specimen)
+  E9_dataset_value.py        REPS         random draws per sample size (protocol)
+  E9_dataset_value.py        SAMPLE_MULT  training-set sizes as multiples of features (grid)
+  E9_dataset_value.py        SPECIMENS    surface shapes (specimen)
+
+D7 census
+  LAW       19
+  BENCH     71
+  DERIVED   19
+  DESIGN    37
+  CLAIM      9
+  total    155 nodes, 43 derivation edges
+  swept     24 (wue_hyperscale, tj_max_si, eta_exp_orc, eta_pump_orc, eta_tower_turb, med_tbt, med_kwh_m3, water_price, ttf_2025, kwh_per_kg_h2, t_pyrolysis, loop_drop, pinch, sink_approach, recup_min_pinch, subcrit_margin, med_brine_salinity, med_loss, tower_H, rth, leak_frac, t_base_junction, spectral_fraction, rh_ambient)
+
+  entries read by each experiment:
+  conventions.py                13
+  E1_geometric_heat.py          34
+  E2_insight_baseline.py         4
+  E3_cascade.py                 45
+  E4_leakage_crossover.py       12
+  E5_tower.py                    4
+  E6_best_uses.py               20
+  E7_uncertainty.py             19
+  E8_incremental_production.py  41
+  E9_dataset_value.py            8
+
+  wrote Experiment Logs/registry_table.md
+
+==============================================================================
+VERDICTS  DEPENDENCY CHAIN
+==============================================================================
+[PASS] D1 closure: DERIVED entries name existing, earlier dependencies (acyclic)  (43 edges)
+[PASS] D2 provenance: every BENCH entry carries a citation
+[PASS] D2 provenance: every citation key resolves in sn-bibliography.bib  (47 keys)
+[PASS] D2 provenance: every LAW entry is cited or is a definition
+[PASS] D3 ranges: every sweep contains its nominal value
+[PASS] D3 ranges: every swept BENCH entry declares its least favourable end and takes it as nominal
+[PASS] D4 usage: every entry an experiment reads exists in the registry
+[PASS] D4 usage: no orphan inputs (every entry is consumed)
+[PASS] D5 no module-level numeric constant outside the declared protocol
+[PASS] D5 no experiment re-types a registry value or physical constant  (60 distinctive values screened)
+[PASS] D6 coherence: conventions.PUE_HYPERSCALE equals the registry  (1.09)
+[PASS] D6 coherence: conventions.PUE_INDUSTRY_AVG equals the registry  (1.4)
+[PASS] D6 coherence: conventions.PRICE_USD_PER_MWH equals the registry  (85.1)
+[PASS] D6 coherence: conventions.CP_AIR equals the registry  (1006.308142514125)
+[PASS] D6 coherence: E1.R_TH equals the registry  (0.05)
+[PASS] D6 coherence: E1.LEAK_FRAC_REF equals the registry  (0.15)
+[PASS] D6 coherence: E1.H100_TDP equals the registry  (700.0)
+[PASS] D6 coherence: E3 Si class coolant equals the registry  (65.0)
+[PASS] D6 coherence: E3 SiC-max class coolant equals the registry  (465.0)
+[PASS] D6 coherence: E3 furnace overhead equals the registry  (0.09000000000000008)
+[PASS] D6 coherence: E3 MED steam equals the registry  (71.0)
+[PASS] D6 coherence: E3 ORC ceiling equals the registry  (0.24)
+[PASS] D6 coherence: E4 overhead equals the registry  (0.09000000000000008)
+[PASS] D6 coherence: E6 boiler efficiency equals the registry  (0.857)
+[PASS] D6 coherence: E6 CO2 factor equals the registry  (0.1810482350537686)
+[PASS] D6 coherence: recovery at the SiC design point, E3 scenario = E4 best_recovery  (0.239887 vs 0.239887)
+[PASS] D6 coherence: cycle efficiency at the SiC design point, E3 = E6  (0.237327)
+[PASS] D6 coherence: the derived silicon coolant carries exactly full power at Tj,max  (Tj 100.000 degC)
+[PASS] D8 every swept entry is exercised at its range ends by an experiment
+------------------------------------------------------------------------------
+DEPENDENCY CHAIN: 29/29 checks pass

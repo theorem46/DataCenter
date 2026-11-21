@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# The manuscript is published on Zenodo and ResearchGate, not hosted here
+*.pdf

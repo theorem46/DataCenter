@@ -13,8 +13,8 @@ The manuscript is **not** hosted in this repository. It is published open access
 
 | | |
 | --- | --- |
-| **Zenodo** | |
-| **ResearchGate** | |
+| **Zenodo** |Swanagon, D. (2026). Reimagining the Data Center: AI Computation as the First Stage of an Integrated Energy System. Zenodo. https://doi.org/10.5281/zenodo.24419368 |
+| **ResearchGate** | https://www.researchgate.net/publication/418163688_Reimagining_the_Data_Center_AI_Computation_as_the_First_Stage_of_an_Integrated_Energy_System |
 
 This repository contains only the experiments behind the paper's protocols and their recorded output, so that any claim in the paper can be re-run and checked independently.
 
